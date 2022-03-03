@@ -4,4 +4,11 @@
    flex-direction: column;
    align-items: flex-start;
    margin: 45px auto 36px;
+   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+   .header {
+      margin: 28px auto 38px;
+   }
 }
