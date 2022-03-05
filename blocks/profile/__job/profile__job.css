@@ -1,8 +1,9 @@
 .profile__job {
-   margin: 0 0 0 30px;
-   color: #ffffff;
+   font-family: 'Inter';
    font-style: normal;
    font-weight: normal;
    font-size: 18px;
    line-height: 22px;
+   color: #ffffff;
+   margin: 0 0 0 30px;
 }

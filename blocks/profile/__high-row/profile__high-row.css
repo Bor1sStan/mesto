@@ -1,0 +1,4 @@
+.profile__high-row {
+   display: flex;
+   flex-direction: row;
+}
