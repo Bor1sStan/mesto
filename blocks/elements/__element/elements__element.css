@@ -5,7 +5,7 @@
    z-index: 1;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 880px) {
    .elements__element {
       margin: 0 auto 0;
    }
