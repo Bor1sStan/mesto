@@ -3,6 +3,16 @@
    height: 50px;
    background-image: url(../../../images/Add-Button.svg);
    background-color: transparent;
+   background-repeat: no-repeat;
    border: none;
-   margin: 35px 0 0;
+   margin: 38px 0 0;
+   padding: 0;
+}
+
+@media (max-width: 570px) {
+   .profile__add-button {
+      margin: 33px auto 0;
+      width: 282px;
+      background-image: url(../../../images/Add-Button-long.svg);
+   }
 }

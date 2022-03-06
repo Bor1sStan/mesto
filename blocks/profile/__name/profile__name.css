@@ -7,3 +7,19 @@
    line-height: 48px;
    margin: 22px 0 16px 30px;
 }
+
+@media (max-width: 768px) {
+   .profile__name {
+      font-size: 27px;
+      line-height: 33px;
+      margin: 29px 0 14px 32px;
+   }
+}
+
+@media (max-width: 568px) {
+   .profile__name {
+      font-size: 27px;
+      line-height: 33px;
+      margin: 29px 0 8px 25px;
+   }
+}

@@ -2,6 +2,20 @@
    max-width: 880px;
    display: flex;
    flex-direction: row;
+   flex-wrap: wrap;
    justify-content: space-between;
    margin: 0 auto 51px;
+}
+
+@media (max-width: 768px) {
+   .profile {
+      margin: 0 15px 36px;
+   }
+}
+
+@media (max-width: 570px) {
+   .profile {
+      margin: 0 auto 36px;
+      flex-direction: column;
+   }
 }

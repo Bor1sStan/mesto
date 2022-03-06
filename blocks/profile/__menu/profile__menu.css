@@ -1,4 +1,12 @@
 .profile__menu {
    display: flex;
    flex-direction: row;
+   flex-wrap: wrap;
+}
+
+@media (max-width: 570px) {
+   .profile__menu {
+      margin: 0 auto;
+      flex-direction: column;
+   }
 }
