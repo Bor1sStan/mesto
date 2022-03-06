@@ -1,0 +1,12 @@
+.elements__element {
+   max-width: 282px;
+   background-color: #ffffff;
+   border-radius: 15px;
+   z-index: 1;
+}
+
+@media (max-width: 600px) {
+   .elements__element {
+      margin: 0 auto 0;
+   }
+}
