@@ -9,7 +9,7 @@
   <body class="body">
     <header class="header">
       <img src="./images/Vector.svg" alt="Место лого" class="header__logo" />
-      <img src="./images/Line.svg" alt="Линия" class="header__line" />
+      <img src="./images/Line.svg" alt="Линия хедера" class="header__line" />
     </header>
 
     <section class="profile">
@@ -30,45 +30,17 @@
       <div class="popup__container">
         <form class="user-data-form">
           <h2 class="user-data-form__title">Редактирование профиля</h2>
-          <input type="text" class="user-data-form__name">
-          <input type="text" class="user-data-form__job">
-          <button class="user-data-form__save">Сохранить
-
+          <input type="text" class="user-data-form__name" value="Жак-Ив Кусто"/>
+          <img src="./images/Line 2.svg" alt="Линия попапа" class="user-data-form__line">
+          <input type="text" class="user-data-form__job" value="Исследователь океана"/>
+          <img src="./images/Line 2.svg" alt="Линия попапа" class="user-data-form__line">
+          <button class="user-data-form__save-button">
+            <p class="user-data-form__save-button-text">Сохранить</p>
           </button>
         </form>
-        <button class="popup__close-button">Крестик</button>
       </div>
+      <button class="popup__close-button"></button>
     </section>
-
-
-<style>
-  .popup {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0,0,0, 0.5);
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
-
-  .popup_opened {
-    display: flex;
-  }
-
-  .popup__container {
-    max-width: 430px;
-    background-color: #ffffff;
-  }
-
-  
-
-  
-</style>
-
 
     <section class="elements">
       <div class="elements__element">
