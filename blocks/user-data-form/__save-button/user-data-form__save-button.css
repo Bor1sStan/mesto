@@ -2,5 +2,12 @@
    width: 358px;
    height: 50px;
    background-color: #000000;
-   margin: 46px 36px 37px 36px;
+   margin: 37px 36px 37px 36px;
+   cursor: pointer;
+   border-radius: 2px;
+   transition: opacity 0.2s ease-in;
+}
+
+.user-data-form__save-button:hover {
+   opacity: 0.8;
 }
