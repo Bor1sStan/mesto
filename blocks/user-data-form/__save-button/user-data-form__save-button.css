@@ -11,3 +11,11 @@
 .user-data-form__save-button:hover {
    opacity: 0.8;
 }
+
+@media (max-width: 600px) {
+   .user-data-form__save-button {
+      width: 238px;
+      height: 46px;
+      margin: 36px 30px 74px 22px;
+   }
+}

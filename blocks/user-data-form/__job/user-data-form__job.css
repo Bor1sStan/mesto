@@ -6,3 +6,9 @@
    border: none;
    margin: 20px 0px 0px 33px;
 }
+
+@media (max-width: 600px) {
+   .user-data-form__job {
+      margin: 20px 0 0 21px;
+   }
+}

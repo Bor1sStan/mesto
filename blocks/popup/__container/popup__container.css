@@ -4,3 +4,10 @@
    background-color: #ffffff;
    border-radius: 15px;
 }
+
+@media (max-width: 600px) {
+   .popup__container {
+      max-width: 282px;
+      max-height: 322px;
+   }
+}
