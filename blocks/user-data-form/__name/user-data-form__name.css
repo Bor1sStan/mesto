@@ -6,3 +6,9 @@
    border: none;
    margin: 0 0 0 33px;
 }
+
+@media (max-width: 600px) {
+   .user-data-form__name {
+      margin: 0 0 0 20px;
+   }
+}
