@@ -29,29 +29,14 @@ function closePopup() {
 
 
 
-// Пишем скрипт для активациии кнопки сердечка в елементах
-// Добавляем модификатор для темного сердечка
 
-const ableLikeButton = document.querySelectorAll(".elements__like-button")
+// Учебный тренажер яндекса
+/*
+const myName = prompt('Как Вас зовут?', '');
+console.log('Здравствуйте, ' + myName.slice(0, 1).toUpperCase() + myName.slice(1));
+*/
 
-ableLikeButton.addEventListener('click', function () {
-   showBlackButton()
-})
+let blokPoem = 'Ночь. Улица. Фонарь. Аптека';
+let blokArray = blokPoem.split('.');
 
-function showBlackButton() {
-   const blackButton = document.querySelectorAll('.elements__like-button')
-   blackButton.classList.add('elements__like-button_active')
-}
-
-// Удаляем модификатор для белого сердечка
-
-const disableLikeButton = document.querySelector("elements__like-button_active")
-
-disableLikeButton.addEventListener('click', function () {
-   hideBlackButton()
-})
-
-function hideBlackButton() {
-   const whiteButton = document.querySelector('elements__like-button_active')
-   whiteButton.classList.remove('elements__like-button_active')
-}
+console.log(blokArray); // ["Ночь", "Улица", "Фонарь", "Аптека"]
