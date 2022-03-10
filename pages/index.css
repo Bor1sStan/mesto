@@ -23,9 +23,8 @@
 
 @import url(../blocks/user-data-form/user-data-form.css);
 @import url(../blocks/user-data-form/__title/user-data-form__title.css);
-@import url(../blocks/user-data-form/__name/user-data-form__name.css);
-@import url(../blocks/user-data-form/__job/user-data-form__job.css);
-@import url(../blocks/user-data-form/__line/user-data-form__line.css);
+@import url(../blocks/user-data-form/__name/user-data-form__input.css);
+@import url(../blocks/user-data-form/__subtitle/user-data-form__subtitle.css);
 @import url(../blocks/user-data-form/__save-button/user-data-form__save-button.css);
 @import url(../blocks/user-data-form/__save-button-text/user-data-form__save-button-text.css);
 

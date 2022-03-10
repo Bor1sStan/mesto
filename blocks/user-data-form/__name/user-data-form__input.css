@@ -1,14 +1,15 @@
-.user-data-form__name {
+.user-data-form__input {
    font-style: normal;
    font-weight: normal;
    font-size: 14px;
-   line-height: 17px;
+   line-height: 26px;
    border: none;
-   margin: 0 0 0 33px;
+   margin: 0;
+   padding: 0;
 }
 
 @media (max-width: 600px) {
-   .user-data-form__name {
+   .user-data-form__input {
       margin: 0 0 0 20px;
    }
 }
