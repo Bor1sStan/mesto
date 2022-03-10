@@ -2,11 +2,17 @@
    width: 358px;
    height: 50px;
    background-color: #000000;
-   margin: 19px 36px 37px 36px;
+   margin: 23px 36px 36px 36px;
    cursor: pointer;
    border-radius: 2px;
    transition: opacity 0.2s ease-in;
    padding: 0;
+   color: #ffffff;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 18px;
+   line-height: 22px;
+   text-align: center;
 }
 
 .user-data-form__save-button:hover {
@@ -17,6 +23,8 @@
    .user-data-form__save-button {
       width: 238px;
       height: 46px;
+      font-size: 14px;
+      line-height: 17px;
       margin: 36px 30px 74px 22px;
    }
 }
