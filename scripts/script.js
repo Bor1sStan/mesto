@@ -46,8 +46,8 @@ function formSubmitHandler (event) {
     event.preventDefault(); 
 const profileName = document.querySelector('.profile__name')
 const profileJob = document.querySelector('.profile__job')
-const nameInput = document.querySelector('.user-data-form__name')
-const jobInput = document.querySelector('.user-data-form__job')
+const nameInput = document.querySelector('#name')
+const jobInput = document.querySelector('#job')
 
 profileName.textContent = nameInput.value;
 profileJob.textContent = jobInput.value;
