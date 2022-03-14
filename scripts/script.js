@@ -12,6 +12,7 @@ const formElement = document.querySelector('.user-data-form'); // перемен
 const popup = document.querySelector(".popup"); // переменная popup
 
 
+
 //  Прописываем все функции
 
 // функция открытия попапа showPopup
@@ -24,8 +25,21 @@ function closePopup() {
    popup.classList.remove("popup_opened");
 }
 
+// функция активации и деактивации лайка
+function toggleLike(like) {
+   like.classList.toggle('elements__like-button_active');
+}
 
- 
+// функция сохранения значений импутов, и закрытия попапа по кнопке "Сохранить"
+function formSubmitHandler (event) {
+    event.preventDefault(); 
+profileName.textContent = nameInput.value;
+profileJob.textContent = jobInput.value;
+closePopup();
+};
+
+
+
 //  Прописываем все слушатели событий 
 
 // клик открытия попапа
@@ -39,20 +53,7 @@ elements.addEventListener('click', function(event) {
    if (event.target.className.includes("elements__like-button")) {
       toggleLike(event.target)
    }    
-})
+});
 
 // отправка данных в форму профиля 
 formElement.addEventListener('submit', formSubmitHandler);
-
-function toggleLike(like) {
-   like.classList.toggle('elements__like-button_active');
-}
-
-// пишем скрипт для ввода данных в поля попапа. Закрытие попапа при нажатии кнопки Сохранить. 
-
-function formSubmitHandler (event) {
-    event.preventDefault(); 
-profileName.textContent = nameInput.value;
-profileJob.textContent = jobInput.value;
-closePopup();
-}
