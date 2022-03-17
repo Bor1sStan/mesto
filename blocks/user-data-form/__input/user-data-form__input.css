@@ -1,0 +1,12 @@
+.user-data-form__input {
+   font-family: "inter", "Arial", sans-serif;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 35px;
+   width: 358px;
+   margin: 0 36px 19px 36px;
+   padding: 0;
+   border: none;
+   border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
