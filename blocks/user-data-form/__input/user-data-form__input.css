@@ -4,8 +4,9 @@
    font-weight: 400;
    font-size: 14px;
    line-height: 35px;
-   max-width: 100%;
-   margin: 0 36px 19px 36px;
+   width: 100%;
+   min-width: 238px;
+   margin-bottom: 19px;
    padding: 0;
    border: none;
    border-bottom: 1px solid rgba(0, 0, 0, 1);

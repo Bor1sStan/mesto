@@ -18,6 +18,8 @@ const popup = document.querySelector(".popup"); // переменная popup
 // функция открытия попапа showPopup
 function showPopup() {
    popup.classList.add("popup_opened");
+   nameInput.value = profileName.textContent;
+   jobInput.value = profileJob.textContent;
 }
 
 // функция закрытия попапа closePopup
