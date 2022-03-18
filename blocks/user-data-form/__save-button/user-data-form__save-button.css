@@ -20,10 +20,8 @@
 
 @media (max-width: 600px) {
    .user-data-form__save-button {
-      width: 238px;
-      height: 46px;
       font-size: 14px;
       line-height: 17px;
-      margin: 18px 22px 25px 22px;
+      
    }
 }
