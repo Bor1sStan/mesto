@@ -19,3 +19,21 @@
       margin: 0 0 45px 0;
    }
 }
+
+/* добавляем плейсхолдеры с префиксами */
+
+.user-data-form__input::-ms-input-placeholder {
+   color: rgba(196, 196, 196, 0.8);
+}
+
+.user-data-form__input::-webkit-input-placeholder {
+   color: rgba(196, 196, 196, 0.8);
+}
+
+.user-data-form__input::-moz-placeholder {
+   color: rgba(196, 196, 196, 0.8);
+}
+
+.user-data-form__input::-o-input-placeholder {
+   color: rgba(196, 196, 196, 0.8);
+}
