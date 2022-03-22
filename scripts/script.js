@@ -74,15 +74,17 @@ initialCards.forEach(( {name , link} ) => {
 // УДАЛЕНИЕ ------------------------------------------------------------------------
 
 
-// прописываем удаление карточек
-const buttonDeleteCard = document.querySelectorAll("#delete-button"); // пременная кнопки для удаления карточки
+// // прописываем удаление карточек
+// const buttonDeleteCard = document.querySelectorAll("#delete-button"); // пременная кнопки для удаления карточки
 
-// функция удаления карточки
-function deletePlace() {
-   const elementCard = buttonDeleteCard.closest('.elements__element')
-   elementCard.remove()
-}
+// // функция удаления карточки
+// function deletePlace() {
+//    const elementCard = buttonDeleteCard.closest('.elements__element')
+//    elementCard.remove()
+// }
 
+// // событие для клика удаления карточки
+// buttonDeleteCard.addEventListener("click", deletePlace);
 
 
 // ---------------------------------------------------------------------------------
@@ -173,5 +175,3 @@ elements.addEventListener('click', function(event) {
 // сохранение новой карточки
 placeForm.addEventListener('submit', submitNewPlace);
 
-// событие для клика удаления карточки
-buttonDeleteCard.addEventListener("click", deletePlace);
