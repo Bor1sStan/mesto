@@ -13,12 +13,65 @@ const profileName = document.querySelector('.profile__name'); // перемен�
 const profileJob = document.querySelector('.profile__job'); // переменная работы профиля
 const nameInput = document.querySelector('#name'); // переменная импута имени профиля
 const jobInput = document.querySelector('#job'); // переменная импута работы профиля
+const formElement = document.querySelector('.user-data-form'); // переменная forElement
 
 // попап карточек мест
 const popupCard = document.querySelector("#popup-card");  // переменная popup с карточками мест
 const elements = document.querySelector(".elements");  // переменная elements для элементов мест
-const formElement = document.querySelector('.user-data-form'); // переменная forElement
+const placeForm = document.querySelector('#placeForm'); // переменная placeForm отправки формы для новой карточки
+const placeInput = document.querySelector('#place'); 
+const websiteInput = document.querySelector('#website');
 
+
+// Начальный массив карточек метс
+const initialCards = [
+   {
+     name: 'Архыз',
+     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+   },
+   {
+     name: 'Челябинская область',
+     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+   },
+   {
+     name: 'Иваново',
+     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+   },
+   {
+     name: 'Камчатка',
+     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+   },
+   {
+     name: 'Холмогорский район',
+     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+   },
+   {
+     name: 'Байкал',
+     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+   }
+ ];
+
+// переменные для верстики карточек template
+const elementTemplate = document.querySelector('#elementTemplate');
+
+
+// перебираем готовый массив 
+initialCards.forEach(( {name , link} ) => {
+   const newCard = elementTemplate.content.cloneNode(true);
+   newCard.querySelector(".elements__image").src=link;
+   newCard.querySelector('.elements__place').textContent=name;
+   elements.appendChild(newCard);
+});
+
+// добавление новых мест через попап карточек мест
+function submitNewPlace(event) {
+   event.preventDefault();
+   const newCard = elementTemplate.content.cloneNode(true);
+   newCard.querySelector(".elements__image").src=websiteInput.value;
+   newCard.querySelector('.elements__place').textContent=placeInput.value;
+   elements.appendChild(newCard);
+   closePopupCard();
+}
 
 
 //  Прописываем все функции
@@ -83,3 +136,6 @@ elements.addEventListener('click', function(event) {
       likeButton(event.target)
    }
 });
+
+// сохранение новой карточки
+placeForm.addEventListener('submit', submitNewPlace);

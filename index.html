@@ -12,7 +12,6 @@
     </header>
 
     <main>
-
       <section class="profile">
         <div class="profile__menu">
           <img src="./images/custo.svg" alt="Аватар" class="profile__avatar" />
@@ -28,53 +27,19 @@
       </section>
 
       <section class="elements">
-        <div class="elements__element">
-          <div class="elements__image elements__image_bg_karachaevsk"></div>
-          <div class="elements__row">
-            <h2 class="elements__place">Карачаевск</h2>
-            <button class="elements__like-button" type="button"></button>
+        <template id="elementTemplate">
+          <div class="elements__element">
+            <img
+              src="./images/elements/karachaevsk.jpg"
+              alt="Крачаевск"
+              class="elements__image"
+            />
+            <div class="elements__row">
+              <h2 class="elements__place">Карачаевск</h2>
+              <button class="elements__like-button" type="button"></button>
+            </div>
           </div>
-        </div>
-
-        <div class="elements__element">
-          <div class="elements__image elements__image_bg_elbrus"></div>
-          <div class="elements__row">
-            <h2 class="elements__place">Гора Эльбрус</h2>
-            <button class="elements__like-button" type="button"></button>
-          </div>
-        </div>
-
-        <div class="elements__element">
-          <div class="elements__image elements__image_bg_dombai"></div>
-          <div class="elements__row">
-            <h2 class="elements__place">Домбай</h2>
-            <button class="elements__like-button" type="button"></button>
-          </div>
-        </div>
-
-        <div class="elements__element">
-          <div class="elements__image elements__image_bg_elbrus"></div>
-          <div class="elements__row">
-            <h2 class="elements__place">Гора Эльбрус</h2>
-            <button class="elements__like-button" type="button"></button>
-          </div>
-        </div>
-
-        <div class="elements__element">
-          <div class="elements__image elements__image_bg_dombai"></div>
-          <div class="elements__row">
-            <h2 class="elements__place">Домбай</h2>
-            <button class="elements__like-button" type="button"></button>
-          </div>
-        </div>
-
-        <div class="elements__element">
-          <div class="elements__image elements__image_bg_karachaevsk"></div>
-          <div class="elements__row">
-            <h2 class="elements__place">Карачаево-Черкесия</h2>
-            <button class="elements__like-button" type="button"></button>
-          </div>
-        </div>
+        </template>
       </section>
     </main>
 
@@ -82,11 +47,11 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
 
-<!--  PopUp с профилем пользователя  -->
+    <!--  PopUp с профилем пользователя  -->
 
-    <div class="popup" id="popup-profile">
+    <div class="popup" id="popupProfile">
       <div class="popup__container">
-        <form class="user-data-form" name="popup-form">
+        <form class="user-data-form" name="popup-form" id="profileForm">
           <h2 class="user-data-form__title">Редактировать профиль</h2>
 
           <input
@@ -105,19 +70,27 @@
             value="Исследователь океана"
           />
 
-          <button class="user-data-form__save-button" id="form-save-button" type="submit">
+          <button
+            class="user-data-form__save-button"
+            id="form-save-button"
+            type="submit"
+          >
             Сохранить
           </button>
         </form>
       </div>
-      <button class="popup__close-button" id="close-button-profile" type="button"></button>
+      <button
+        class="popup__close-button"
+        id="close-button-profile"
+        type="button"
+      ></button>
     </div>
 
-<!--  PopUp с кароточками мест  -->
+    <!--  PopUp с кароточками мест  -->
 
-    <div class="popup" id="popup-card">
+    <div class="popup" id="popupCard">
       <div class="popup__container">
-        <form class="user-data-form" name="popup-form">
+        <form class="user-data-form" name="popup-form" id="placeForm">
           <h2 class="user-data-form__title">Новое место</h2>
 
           <input
@@ -136,12 +109,20 @@
             placeholder="Ссылка на картинку"
           />
 
-          <button class="user-data-form__save-button" id="form-create-button" type="submit">
+          <button
+            class="user-data-form__save-button"
+            id="form-create-button"
+            type="submit"
+          >
             Создать
           </button>
         </form>
       </div>
-      <button class="popup__close-button" id="close-button-card" type="button"></button>
+      <button
+        class="popup__close-button"
+        id="close-button-card"
+        type="button"
+      ></button>
     </div>
 
     <script src="./scripts/script.js"></script>
