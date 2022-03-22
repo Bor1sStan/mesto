@@ -4,7 +4,7 @@
    flex-direction: row;
    flex-wrap: wrap;
    justify-content: space-between;
-   margin: 0 auto 51px;
+   margin: 0 auto 52px;
 }
 
 @media (max-width: 895px) {

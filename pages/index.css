@@ -29,9 +29,7 @@
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/elements/__element/elements__element.css);
 @import url(../blocks/elements/__image/elements__image.css);
-@import url(../blocks/elements/__image/_bg/elements__image_bg_karachaevsk.css);
-@import url(../blocks/elements/__image/_bg/elements__image_bg_elbrus.css);
-@import url(../blocks/elements/__image/_bg/elements__image_bg_dombai.css);
+@import url(../blocks/elements/__delete-button/elements__delete-button.css);
 @import url(../blocks/elements/__row/elements__row.css);
 @import url(../blocks/elements/__place/elements__place.css);
 @import url(../blocks/elements/__like-button/elements__like-button.css);

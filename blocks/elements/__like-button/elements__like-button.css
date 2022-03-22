@@ -5,7 +5,8 @@
    object-fit: cover;
    border: 0;
    background-color: transparent;
-   margin: 6px 5px 0 24px;
+   margin: 4px 5px 0 0;
+   padding: 0;
    cursor: pointer;
    transition: opacity 0.2s ease-in;
 }
