@@ -53,6 +53,11 @@ function closePopupCard() {
    popupCard.classList.remove("popup_opened");
 };
 
+// функция активации лайков карточек
+function likeButton(like) {
+   like.classList.toggle('elements__like-button_active')
+};
+
 
 
 //  Прописываем все слушатели событий 
@@ -71,3 +76,10 @@ addButtonCard.addEventListener("click", openPopupCard);
 
 // клик для закртыия попапа карточки места 
 closeButtonCard.addEventListener("click", closePopupCard);
+
+// клик для активации и деактивации лайка карточки
+elements.addEventListener('click', function(event) {
+   if (event.target.className.includes('elements__like-button')) {
+      likeButton(event.target)
+   }
+});

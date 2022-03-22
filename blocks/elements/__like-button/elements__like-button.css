@@ -7,6 +7,7 @@
    background-color: transparent;
    margin: 6px 5px 0 24px;
    cursor: pointer;
+   transition: opacity 0.2s ease-in;
 }
 
 .elements__like-button:hover {
