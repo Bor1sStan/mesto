@@ -7,7 +7,7 @@
    margin: 0 auto 51px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 895px) {
    .profile {
       margin: 0 15px 36px;
    }

@@ -1,0 +1,39 @@
+.user-data-form__input {
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 35px;
+   width: 100%;
+   padding: 0;
+   border: none;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+   margin: 0 0 22px 0;
+}
+
+.user-data-form__input:last-of-type {
+   margin: 0 0 48px 0;
+}
+
+@media (max-width: 635px) {
+   .user-data-form__input:last-of-type {
+      margin: 0 0 45px 0;
+   }
+}
+
+/* добавляем плейсхолдеры с префиксами */
+
+.user-data-form__input::-ms-input-placeholder {
+   color: rgba(196, 196, 196, 0.8);
+}
+
+.user-data-form__input::-webkit-input-placeholder {
+   color: rgba(196, 196, 196, 0.8);
+}
+
+.user-data-form__input::-moz-placeholder {
+   color: rgba(196, 196, 196, 0.8);
+}
+
+.user-data-form__input::-o-input-placeholder {
+   color: rgba(196, 196, 196, 0.8);
+}
