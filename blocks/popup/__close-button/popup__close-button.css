@@ -5,9 +5,9 @@
    background-size: contain;
    border: none;
    background-color: transparent;
-   position: relative;
-   left: 9px;
-   top: -189px;
+   position: absolute;
+   left: calc(100% + 20px);
+   bottom: calc(100% + 20px);
    transition: opacity 0.2s ease-in;
    padding: 0;
    cursor: pointer;

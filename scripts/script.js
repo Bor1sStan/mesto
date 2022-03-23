@@ -5,8 +5,8 @@
 // кнопки 
 const editButtonProfile = document.querySelector(".profile__edit-button"); // переменная кнопки редактирования профиля
 const closeButtonProfile = document.querySelector("#close-button-profile"); // переменная кнопки закрытия профиля
-const addButtonCard = document.querySelector(".profile__add-button"); // переменная кнопка добавления карточек
-const closeButtonCard = document.querySelector("#close-button-card"); // переменная кнопка закрытия попапа карточек 
+const addButtonPlace = document.querySelector(".profile__add-button"); // переменная кнопка добавления карточек
+const closeButtonPlace = document.querySelector("#close-button-place"); // переменная кнопка закрытия попапа карточек 
 
 // попап профиля
 const popupProfile = document.querySelector('#popup-profile'); // переменная popup с профилем пользователя
@@ -17,7 +17,7 @@ const jobInput = document.querySelector('#job'); // переменная имп�
 const formElement = document.querySelector('.user-data-form'); // переменная forElement
 
 // попап карточек мест
-const popupCard = document.querySelector("#popup-card");  // переменная popup с карточками мест
+const popupPlace = document.querySelector("#popup-place");  // переменная popup с карточками мест
 const elements = document.querySelector(".elements");  // переменная elements для элементов мест
 const placeForm = document.querySelector('#placeForm'); // переменная placeForm отправки формы для новой карточки
 const placeInput = document.querySelector('#place'); // переменная placeInput 
@@ -74,24 +74,37 @@ initialCards.forEach(( {name , link} ) => {
 // УДАЛЕНИЕ ------------------------------------------------------------------------
 
 
-// // прописываем удаление карточек
-// const buttonDeleteCard = document.querySelectorAll("#delete-button"); // пременная кнопки для удаления карточки
+// прописываем удаление карточек
+const buttonDeleteCard = document.querySelector(".elements__delete-button"); // пременная кнопки для удаления карточки
 
-// // функция удаления карточки
-// function deletePlace() {
-//    const elementCard = buttonDeleteCard.closest('.elements__element')
-//    elementCard.remove()
-// }
 
-// // событие для клика удаления карточки
-// buttonDeleteCard.addEventListener("click", deletePlace);
+// функция удаления карточки
+function deleteCard() {
+   const elementCard = buttonDeleteCard.closest('.elements__element')
+   elementCard.remove()
+}
+
+// событие для клика удаления карточки
+buttonDeleteCard.addEventListener("click", deleteCard);
 
 
 // ---------------------------------------------------------------------------------
 
 
 
+// фотка с кароточкой ------------------------------------------------------------------------
 
+// прописываем переменные
+const closeButtonCard = document.querySelector('#close-button-card');
+const popupCard = document.querySelector('#popup-card')
+
+// функция закрытия карточки
+function closeCard() {
+   popupCard.classList.remove('popup_opened');
+}
+
+// слушатель событий 
+closeButtonCard.addEventListener('click', closeCard);
 
 
 
@@ -122,13 +135,13 @@ function formSubmitHandler (event) {
 };
 
 // функция открытия попапа каротчек мест openPopupPlace
-function openPopupCard() {
-   popupCard.classList.add("popup_opened");
+function openPopupPlace() {
+   popupPlace.classList.add("popup_opened");
 };
 
-// функция закрытия попапа карточки месте closePopupCard
-function closePopupCard() {
-   popupCard.classList.remove("popup_opened");
+// функция закрытия попапа карточки месте closePopupPlace
+function closePopupPlace() {
+   popupPlace.classList.remove("popup_opened");
 };
 
 // функция активации лайков карточек
@@ -160,10 +173,10 @@ closeButtonProfile.addEventListener("click", closePopupProfile);
 formElement.addEventListener('submit', formSubmitHandler);
 
 // клик для открытия попапа карточки метса
-addButtonCard.addEventListener("click", openPopupCard);
+addButtonPlace.addEventListener("click", openPopupPlace);
 
 // клик для закртыия попапа карточки места 
-closeButtonCard.addEventListener("click", closePopupCard);
+closeButtonPlace.addEventListener("click", closePopupPlace);
 
 // клик для активации и деактивации лайка карточки
 elements.addEventListener('click', function(event) {

@@ -28,19 +28,18 @@
 
       <section class="elements">
         <template id="elementTemplate">
-          <div class="elements__element">
+          <article class="elements__element">
             <img
-              src="./images/elements/karachaevsk.jpg"
+              src="./images/kirill-pershin-1088404-unsplash.svg"
               alt="Крачаевск"
               class="elements__image"
-              
             />
             <button class="elements__delete-button" type="button"></button>
             <div class="elements__row">
               <h2 class="elements__place">Карачаево-Черкесия</h2>
               <button class="elements__like-button" type="button"></button>
             </div>
-          </div>
+          </article>
         </template>
       </section>
     </main>
@@ -52,8 +51,13 @@
     <!--  PopUp с профилем пользователя  -->
 
     <div class="popup" id="popup-profile">
-      <div class="popup__container">
+      <article class="popup__container">
         <form class="user-data-form" name="popup-form" id="profileForm">
+          <button
+            class="popup__close-button"
+            id="close-button-profile"
+            type="button"
+          ></button>
           <h2 class="user-data-form__title">Редактировать профиль</h2>
 
           <input
@@ -80,19 +84,19 @@
             Сохранить
           </button>
         </form>
-      </div>
-      <button
-        class="popup__close-button"
-        id="close-button-profile"
-        type="button"
-      ></button>
+      </article>
     </div>
 
     <!--  PopUp с кароточками мест  -->
 
-    <div class="popup" id="popup-card">
-      <div class="popup__container">
+    <div class="popup" id="popup-place">
+      <article class="popup__container">
         <form class="user-data-form" name="popup-form" id="placeForm">
+          <button
+            class="popup__close-button"
+            id="close-button-card"
+            type="button"
+          ></button>
           <h2 class="user-data-form__title">Новое место</h2>
 
           <input
@@ -119,12 +123,21 @@
             Создать
           </button>
         </form>
-      </div>
-      <button
-        class="popup__close-button"
-        id="close-button-card"
-        type="button"
-      ></button>
+      </article>
+    </div>
+
+    <!--  PopUp с фотками кароточками мест  -->
+
+    <div class="popup " id="popup-card">
+      <article class="popup__card">
+        <button
+          class="popup__close-button"
+          id="close-button-card"
+          type="button"
+        ></button>
+        <img src="./images/kirill.jpg" alt="Крачаевск" class="popup__image" />
+        <h2 class="popup__row">Карачаево-Черкесия</h2>
+      </article>
     </div>
 
     <script src="./scripts/script.js"></script>
