@@ -6,8 +6,8 @@
    border: none;
    background-color: transparent;
    position: absolute;
-   left: calc(100% + 20px);
-   bottom: calc(100% + 20px);
+   left: calc(100% + 7px);
+   bottom: calc(100% + 7px);
    transition: opacity 0.2s ease-in;
    padding: 0;
    cursor: pointer;
@@ -21,7 +21,7 @@
    .popup__close-button {
       width: 20px;
       height: 20px;
-      left: -20px;
-      top: -186px;
+      left: calc(80% + 36px);
+      bottom: calc(100% + 16px);
    }
 }

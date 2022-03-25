@@ -5,8 +5,8 @@
 // кнопки 
 const editButtonProfile = document.querySelector(".profile__edit-button"); // переменная кнопки редактирования профиля
 const closeButtonProfile = document.querySelector("#close-button-profile"); // переменная кнопки закрытия профиля
-const addButtonPlace = document.querySelector(".profile__add-button"); // переменная кнопка добавления карточек
-const closeButtonPlace = document.querySelector("#close-button-place"); // переменная кнопка закрытия попапа карточек 
+const addButtonPlace = document.querySelector(".profile__add-button"); // переменная кнопка попапа добавления карточек
+const closeButtonPlace = document.querySelector("#close-button-place"); // переменная кнопка попапа закрытия карточек 
 
 // попап профиля
 const popupProfile = document.querySelector('#popup-profile'); // переменная popup с профилем пользователя
@@ -88,23 +88,34 @@ function deleteCard() {
 buttonDeleteCard.addEventListener("click", deleteCard);
 
 
+
+
 // ---------------------------------------------------------------------------------
 
 
 
-// фотка с кароточкой ------------------------------------------------------------------------
+// ПОПАП С ФОТКОЙ ------------------------------------------------------------------------
 
 // прописываем переменные
-const closeButtonCard = document.querySelector('#close-button-card');
-const popupCard = document.querySelector('#popup-card')
+const popupCard = document.querySelectorAll('#popup-card') // перебираем карточки
+const closeButtonCard = document.querySelector('#close-button-card'); // переменная кнопки закрытия попапа карточки
+const popupImage = document.querySelector('.elements__image'); // переменная rfhnbyrb попапа карточки
 
-// функция закрытия карточки
-function closeCard() {
-   popupCard.classList.remove('popup_opened');
+// функция открытия карточки
+function showPopupCard() {
+   popupCard.classList.add("popup_opened");
 }
 
-// слушатель событий 
-closeButtonCard.addEventListener('click', closeCard);
+// функция закрытия карточки
+function closePopupCard() {
+   popupCard.classList.remove("popup_opened");
+}
+
+// слушатель события открытия картинки попапа карточки
+popupImage.addEventListener('click', showPopupCard)
+
+// слушатель событий закрытия картинки попапа карточки
+closeButtonCard.addEventListener('click', closePopupCard);
 
 
 
@@ -156,7 +167,7 @@ function submitNewPlace(event) {
    newCard.querySelector(".elements__image").src=websiteInput.value;
    newCard.querySelector(".elements__place").textContent=placeInput.value;
    elements.appendChild(newCard);
-   closePopupCard();
+   closePopupPlace();
 };
 
 
@@ -187,4 +198,11 @@ elements.addEventListener('click', function(event) {
 
 // сохранение новой карточки
 placeForm.addEventListener('submit', submitNewPlace);
+
+
+
+
+
+
+
 
