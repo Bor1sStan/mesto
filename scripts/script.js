@@ -21,7 +21,7 @@ const placeForm = document.querySelector("#placeForm"); // переменная 
 const placeInput = document.querySelector("#place"); // переменная placeInput
 const websiteInput = document.querySelector("#website"); // переменная websiteInput
 
-// переменные для новых карточек
+// переменные для новых карточек  
 const elementTemplate = document.querySelector("#elementTemplate"); // переменная для вёрстки карточек template
 
 //  -----    Начальный массив карточек мест
@@ -62,7 +62,7 @@ initialCards.forEach(({ name, link }) => {
 
 // УДАЛЕНИЕ ------------------------------------------------------------------------
 
-
+// исправляем ошибки
 
 // функция удаления карточки
 function deleteCard(trashButton) {
