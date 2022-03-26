@@ -21,8 +21,11 @@ const placeForm = document.querySelector("#placeForm"); // переменная 
 const placeInput = document.querySelector("#place"); // переменная placeInput
 const websiteInput = document.querySelector("#website"); // переменная websiteInput
 
-// переменные для новых карточек  
+// переменные для попапа новых карточек  
 const elementTemplate = document.querySelector("#elementTemplate"); // переменная для вёрстки карточек template
+const popupCard = document.querySelector("#popup-card"); // перебираем карточки
+const closeButtonCard = document.querySelector("#close-button-card"); // переменная кнопки закрытия попапа карточки
+
 
 //  -----    Начальный массив карточек мест
 const initialCards = [
@@ -60,41 +63,8 @@ initialCards.forEach(({ name, link }) => {
   elements.appendChild(newCard);
 });
 
-// УДАЛЕНИЕ ------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-//                           исправляем ошибки
-
-
-
-
-
-
-
-
-
-// функция удаления карточки
-function deleteCard(trashButton) {
-  const elementCard = trashButton.closest(".elements__element");
-  elementCard.remove();
-}
-
-// ---------------------------------------------------------------------------------
-
-// ПОПАП С ФОТКОЙ ------------------------------------------------------------------------
-
-// прописываем переменные
-const popupCard = document.querySelector("#popup-card"); // перебираем карточки
-const closeButtonCard = document.querySelector("#close-button-card"); // переменная кнопки закрытия попапа карточки
-const popupElementImage = document.querySelector(".elements__image"); // переменная изображений для попапа карточки
-const popupElementRow = document.querySelector(".popup__row"); // переменная названия места строчка под фотографией карточки попапа
-// const
+//  -----    Прописываем все функции
 
 // функция открытия карточки
 function showPopupCard(card) {
@@ -109,14 +79,6 @@ function showPopupCard(card) {
 function closePopupCard() {
   popupCard.classList.remove("popup_opened");
 }
-
-// слушатель события открытия картинки попапа карточки
-// popupElementImage.addEventListener('click', showPopupCard)
-
-// слушатель событий закрытия картинки попапа карточки
-closeButtonCard.addEventListener("click", closePopupCard);
-
-//  -----    Прописываем все функции
 
 // функция открытия попапа профиля showPopupProfile
 function showPopupProfile() {
@@ -163,6 +125,13 @@ function submitNewPlace(event) {
   closePopupPlace();
 }
 
+// функция удаления карточки
+function deleteCard(trashButton) {
+   const elementCard = trashButton.closest(".elements__element");
+   elementCard.remove();
+};
+
+
 //  -----    Прописываем все слушатели событий
 
 // клик открытия попапа профиля пользователя
@@ -179,6 +148,9 @@ addButtonPlace.addEventListener("click", openPopupPlace);
 
 // клик для закртыия попапа карточки места
 closeButtonPlace.addEventListener("click", closePopupPlace);
+
+// слушатель событий закрытия картинки попапа карточки
+closeButtonCard.addEventListener("click", closePopupCard);
 
 // клик для активации и деактивации лайка карточки
 elements.addEventListener("click", function (event) {
