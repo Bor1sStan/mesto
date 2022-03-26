@@ -1,3 +1,4 @@
+
 //  -----    Прописываем все константы
 
 // кнопки
@@ -28,6 +29,7 @@ const closeButtonCard = document.querySelector("#close-button-card"); // пер�
 
 
 //  -----    Начальный массив карточек мест
+
 const initialCards = [
   {
     name: "Архыз",
@@ -65,6 +67,7 @@ initialCards.forEach(({ name, link }) => {
 
 
 //  -----    Прописываем все функции
+
 
 // функция открытия карточки
 function showPopupCard(card) {
@@ -134,6 +137,7 @@ function deleteCard(trashButton) {
 
 //  -----    Прописываем все слушатели событий
 
+
 // клик открытия попапа профиля пользователя
 editButtonProfile.addEventListener("click", showPopupProfile);
 
@@ -152,26 +156,25 @@ closeButtonPlace.addEventListener("click", closePopupPlace);
 // слушатель событий закрытия картинки попапа карточки
 closeButtonCard.addEventListener("click", closePopupCard);
 
-// клик для активации и деактивации лайка карточки
+// слушатель событий для карточки
 elements.addEventListener("click", function (event) {
   if (event.target.className.includes("elements__like-button")) {
-    likeButton(event.target);
+    likeButton(event.target);   // клик активация и деактивация лайка
     return;
   }
   if (event.target.className.includes('elements__delete-button')) {
-     deleteCard(event.target);
+     deleteCard(event.target);   // клик для удаления карточки
      return;
   }
   if (event.target.className.includes("elements__element")) {
-    showPopupCard(event.target);
+    showPopupCard(event.target);   // клик для активация попапа по элементу карточки
     return;
   }
   const target = event.target.closest(".elements__element");
   if (target) {
-    showPopupCard(target);
+    showPopupCard(target);   // клик для активация попапа по близкому элементу карточки
   }
 });
-
 
 // сохранение новой карточки
 placeForm.addEventListener("submit", submitNewPlace);
