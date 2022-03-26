@@ -22,7 +22,7 @@ const placeInput = document.querySelector("#place"); // переменная pla
 const websiteInput = document.querySelector("#website"); // переменная websiteInput
 
 // переменные для попапа новых карточек  
-const elementTemplate = document.querySelector("#elementTemplate"); // переменная для вёрстки карточек template
+const elementTemplate = document.querySelector("#card"); // переменная для вёрстки карточек template
 const popupCard = document.querySelector("#popup-card"); // перебираем карточки
 const closeButtonCard = document.querySelector("#close-button-card"); // переменная кнопки закрытия попапа карточки
 
@@ -75,10 +75,29 @@ function showPopupCard(card) {
   popupCard.classList.add("popup_opened");
 }
 
-// функция закрытия карточки
-function closePopupCard() {
-  popupCard.classList.remove("popup_opened");
+
+
+
+// // функция закрытия карточки
+// function closePopupCard() {
+//   popupCard.classList.remove("popup_opened");
+// }
+// функция закрытия попапа профиля closePopupProfile
+// function closePopupProfile() {
+//   popupProfile.classList.remove("popup_opened");
+// }
+// функция закрытия попапа карточки месте closePopupPlace
+// function closePopupPlace() {
+//   popupPlace.classList.remove("popup_opened");
+// }
+
+
+
+// функция закрытия попапа
+function closePopup(item) {
+  item.classList.remove("popup_opened");
 }
+
 
 // функция открытия попапа профиля showPopupProfile
 function showPopupProfile() {
@@ -87,17 +106,14 @@ function showPopupProfile() {
   jobInput.value = profileJob.textContent;
 }
 
-// функция закрытия попапа профиля closePopupProfile
-function closePopupProfile() {
-  popupProfile.classList.remove("popup_opened");
-}
+
 
 // функция сохранения значений импутов, и закрытия попапа профиля по кнопке "Сохранить"
 function formSubmitHandler(event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopupProfile();
+  closePopup();
 }
 
 // функция открытия попапа каротчек мест openPopupPlace
@@ -105,10 +121,7 @@ function openPopupPlace() {
   popupPlace.classList.add("popup_opened");
 }
 
-// функция закрытия попапа карточки месте closePopupPlace
-function closePopupPlace() {
-  popupPlace.classList.remove("popup_opened");
-}
+
 
 // функция активации лайков карточек
 function likeButton(like) {
@@ -122,7 +135,7 @@ function submitNewPlace(event) {
   newCard.querySelector(".elements__image").src = websiteInput.value;
   newCard.querySelector(".elements__place").textContent = placeInput.value;
   elements.appendChild(newCard);
-  closePopupPlace();
+  closePopup();
 }
 
 // функция удаления карточки
@@ -134,23 +147,29 @@ function deleteCard(trashButton) {
 
 //  -----    Прописываем все слушатели событий
 
-// клик открытия попапа профиля пользователя
-editButtonProfile.addEventListener("click", showPopupProfile);
+
 
 // клик закрытия попапа пользователя
-closeButtonProfile.addEventListener("click", closePopupProfile);
+closeButtonProfile.addEventListener("click", () => closePopup(popupProfile));
+
+// клик для закртыия попапа карточки места
+closeButtonPlace.addEventListener("click", () => closePopup(popupPlace));
+
+// слушатель событий закрытия картинки попапа карточки
+closeButtonCard.addEventListener("click", () => closePopup(popupCard));
+
+
+
+
+
+// клик открытия попапа профиля пользователя
+editButtonProfile.addEventListener("click", showPopupProfile);
 
 // отправка данных в форму профиля
 formElement.addEventListener("submit", formSubmitHandler);
 
 // клик для открытия попапа карточки метса
 addButtonPlace.addEventListener("click", openPopupPlace);
-
-// клик для закртыия попапа карточки места
-closeButtonPlace.addEventListener("click", closePopupPlace);
-
-// слушатель событий закрытия картинки попапа карточки
-closeButtonCard.addEventListener("click", closePopupCard);
 
 // клик для активации и деактивации лайка карточки
 elements.addEventListener("click", function (event) {
