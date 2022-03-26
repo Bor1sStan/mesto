@@ -87,7 +87,10 @@ function deleteCard() {
 // событие для клика удаления карточки
 buttonDeleteCard.addEventListener("click", deleteCard);
 
-
+// кто грязный читер????? я грязный грязный мальчик
+// function deleteCard(evt) {
+//    evt.target.closest('.element').remove();
+//  }
 
 
 // ---------------------------------------------------------------------------------
