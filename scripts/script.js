@@ -13,7 +13,7 @@ const profileName = document.querySelector(".profile__name"); // перемен�
 const profileJob = document.querySelector(".profile__job"); // переменная работы профиля
 const nameInput = document.querySelector("#name"); // переменная импута имени профиля
 const jobInput = document.querySelector("#job"); // переменная импута работы профиля
-const formElement = document.querySelector(".user-data-form"); // переменная forElement
+const profileForm = document.querySelector(".user-data-form"); // переменная profileForm
 
 // попап карточек мест
 const popupPlace = document.querySelector("#popup-place"); // переменная popup с карточками мест
@@ -61,22 +61,11 @@ initialCards.forEach(({ name, link }) => {
   const newCard = elementTemplate.content.cloneNode(true); // переменная для новых карточек с копирование узла DOM
   newCard.querySelector(".elements__image").src = link;
   newCard.querySelector(".elements__place").textContent = name;
-  elements.appendChild(newCard);
+  elements.append(newCard);
 });
 
 
-//  -----    Прописываем все функции
-
-// функция открытия карточки
-function showPopupCard(card) {
-  const src = card.querySelector(".elements__image").src;
-  const name = card.querySelector(".elements__place").textContent;
-  popupCard.querySelector(".popup__image").src = src;
-  popupCard.querySelector(".popup__row").textContent = name;
-  popupCard.classList.add("popup_opened");
-}
-
-
+//  -------------------------------------------------------------------------------------------------
 
 
 // // функция закрытия карточки
@@ -101,19 +90,16 @@ function closePopup(item) {
   item.classList.remove("popup_opened");
 }
 
+
 // функция открытия попапа каротчек мест openPopupPlace
 function openPopup(item) {
   item.classList.add("popup_opened");
 }
 
 
-
-
-
-
 // функция открытия попапа профиля showPopupProfile
 function showPopupProfile() {
-  popupProfile.classList.add("popup_opened");
+  openPopup(popupProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 }
@@ -124,13 +110,34 @@ function formSubmitHandler(event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopup();
+  closePopup(popupProfile);
 }
+
 
 // функция активации лайков карточек
 function likeButton(like) {
   like.classList.toggle("elements__like-button_active");
 }
+
+
+
+
+
+
+
+
+
+
+
+// функция открытия карточки в попапе
+function showPopupCard(card) {
+  const src = card.querySelector(".elements__image").src;
+  const name = card.querySelector(".elements__place").textContent;
+  popupCard.querySelector(".popup__image").src = src;
+  popupCard.querySelector(".popup__row").textContent = name;
+  popupCard.classList.add("popup_opened");
+};
+
 
 // функция добавления новых мест через попап карточек мест, с закрытием попапа
 function submitNewPlace(event) {
@@ -138,7 +145,7 @@ function submitNewPlace(event) {
   const newCard = elementTemplate.content.cloneNode(true); // переменная для новых карточек с копирование узла DOM
   newCard.querySelector(".elements__image").src = websiteInput.value;
   newCard.querySelector(".elements__place").textContent = placeInput.value;
-  elements.append(newCard);
+  elements.prepend(newCard);
   closePopup(popupPlace);
 }
 
@@ -149,13 +156,16 @@ function deleteCard(trashButton) {
 };
 
 
+
+
+
+
+
+
 //  -----    Прописываем все слушатели событий
 
 // слушатель событий клик для открытия попапа карточки метса
 addButtonPlace.addEventListener("click", () => openPopup(popupPlace));
-
-
-
 
 
 // слушатель событий клик закрытия попапа пользователя
@@ -175,7 +185,7 @@ closeButtonCard.addEventListener("click", () => closePopup(popupCard));
 editButtonProfile.addEventListener("click", showPopupProfile);
 
 // отправка данных в форму профиля
-formElement.addEventListener("submit", formSubmitHandler);
+profileForm.addEventListener("submit", formSubmitHandler);
 
 // сохранение новой карточки
 placeForm.addEventListener("submit", submitNewPlace);
