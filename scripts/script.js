@@ -1,3 +1,4 @@
+
 //  -----    Прописываем все константы
 
 // кнопки
@@ -93,10 +94,21 @@ function showPopupCard(card) {
 
 
 
+
+
 // функция закрытия попапа
 function closePopup(item) {
   item.classList.remove("popup_opened");
 }
+
+// функция открытия попапа каротчек мест openPopupPlace
+function openPopup(item) {
+  item.classList.add("popup_opened");
+}
+
+
+
+
 
 
 // функция открытия попапа профиля showPopupProfile
@@ -107,7 +119,6 @@ function showPopupProfile() {
 }
 
 
-
 // функция сохранения значений импутов, и закрытия попапа профиля по кнопке "Сохранить"
 function formSubmitHandler(event) {
   event.preventDefault();
@@ -115,13 +126,6 @@ function formSubmitHandler(event) {
   profileJob.textContent = jobInput.value;
   closePopup();
 }
-
-// функция открытия попапа каротчек мест openPopupPlace
-function openPopupPlace() {
-  popupPlace.classList.add("popup_opened");
-}
-
-
 
 // функция активации лайков карточек
 function likeButton(like) {
@@ -134,8 +138,8 @@ function submitNewPlace(event) {
   const newCard = elementTemplate.content.cloneNode(true); // переменная для новых карточек с копирование узла DOM
   newCard.querySelector(".elements__image").src = websiteInput.value;
   newCard.querySelector(".elements__place").textContent = placeInput.value;
-  elements.appendChild(newCard);
-  closePopup();
+  elements.append(newCard);
+  closePopup(popupPlace);
 }
 
 // функция удаления карточки
@@ -147,15 +151,20 @@ function deleteCard(trashButton) {
 
 //  -----    Прописываем все слушатели событий
 
+// слушатель событий клик для открытия попапа карточки метса
+addButtonPlace.addEventListener("click", () => openPopup(popupPlace));
 
 
-// клик закрытия попапа пользователя
+
+
+
+// слушатель событий клик закрытия попапа пользователя
 closeButtonProfile.addEventListener("click", () => closePopup(popupProfile));
 
-// клик для закртыия попапа карточки места
+// слушатель событий клик для закртыия попапа карточки места
 closeButtonPlace.addEventListener("click", () => closePopup(popupPlace));
 
-// слушатель событий закрытия картинки попапа карточки
+// слушатель событий клик для закрытия картинки попапа карточки
 closeButtonCard.addEventListener("click", () => closePopup(popupCard));
 
 
@@ -168,29 +177,26 @@ editButtonProfile.addEventListener("click", showPopupProfile);
 // отправка данных в форму профиля
 formElement.addEventListener("submit", formSubmitHandler);
 
-// клик для открытия попапа карточки метса
-addButtonPlace.addEventListener("click", openPopupPlace);
+// сохранение новой карточки
+placeForm.addEventListener("submit", submitNewPlace);
 
-// клик для активации и деактивации лайка карточки
+// слушатели событий для карточки
 elements.addEventListener("click", function (event) {
   if (event.target.className.includes("elements__like-button")) {
-    likeButton(event.target);
+    likeButton(event.target);  // активация 
     return;
   }
   if (event.target.className.includes('elements__delete-button')) {
-     deleteCard(event.target);
+     deleteCard(event.target);  // клик по урне это функция удаления карточки 
      return;
   }
   if (event.target.className.includes("elements__element")) {
-    showPopupCard(event.target);
+    showPopupCard(event.target);  // клик по элементу карточки это функция открытия карточки 
     return;
   }
   const target = event.target.closest(".elements__element");
   if (target) {
-    showPopupCard(target);
+    showPopupCard(target);  // клик по ближайшему к элементу карточки это функция открытия карточки
   }
 });
 
-
-// сохранение новой карточки
-placeForm.addEventListener("submit", submitNewPlace);
