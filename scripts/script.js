@@ -130,3 +130,27 @@ function previewCard(item) {
 
 
 //   -----   Прописываем слушатели событий   -----
+
+//слушатель открытия попапа профиля 
+editButton.addEventListener('click', function() {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+  openPopup(popupProfile);
+});
+
+//слушатель сохранения данных попапа профиля
+function formEditSubmitHandler(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  closePopup(popupProfile);
+};
+
+//слушатель закрытия попапа профиля 
+closeButtonProfile.addEventListener('click', () => closePopup(popupProfile));
+
+//слушатель открытия попапа место 
+addButton.addEventListener('click', () => openPopup(popupPlace));
+
+//слушатель закрытия попапа место
+closeButtonPlace.addEventListener('click', () => closePopup(popupPlace));
