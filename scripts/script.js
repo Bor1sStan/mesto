@@ -1,37 +1,3 @@
-<<<<<<< HEAD
-
-//  -----    Прописываем все константы
-
-// кнопки
-const editButtonProfile = document.querySelector(".profile__edit-button"); // переменная кнопки редактирования профиля
-const closeButtonProfile = document.querySelector("#close-button-profile"); // переменная кнопки закрытия профиля
-const addButtonPlace = document.querySelector(".profile__add-button"); // переменная кнопка попапа добавления карточек
-const closeButtonPlace = document.querySelector("#close-button-place"); // переменная кнопка попапа закрытия карточек
-
-// попап профиля
-const popupProfile = document.querySelector("#popup-profile"); // переменная popup с профилем пользователя
-const profileName = document.querySelector(".profile__name"); // переменная имени профиля
-const profileJob = document.querySelector(".profile__job"); // переменная работы профиля
-const nameInput = document.querySelector("#name"); // переменная импута имени профиля
-const jobInput = document.querySelector("#job"); // переменная импута работы профиля
-const formElement = document.querySelector(".user-data-form"); // переменная forElement
-
-// попап карточек мест
-const popupPlace = document.querySelector("#popup-place"); // переменная popup с карточками мест
-const elements = document.querySelector(".elements"); // переменная elements для элементов мест
-const placeForm = document.querySelector("#placeForm"); // переменная placeForm отправки формы для новой карточки
-const placeInput = document.querySelector("#place"); // переменная placeInput
-const websiteInput = document.querySelector("#website"); // переменная websiteInput
-
-// переменные для попапа новых карточек  
-const elementTemplate = document.querySelector("#elementTemplate"); // переменная для вёрстки карточек template
-const popupCard = document.querySelector("#popup-card"); // перебираем карточки
-const closeButtonCard = document.querySelector("#close-button-card"); // переменная кнопки закрытия попапа карточки
-
-
-//  -----    Начальный массив карточек мест
-
-=======
 
 
 //   -----   Прописываем переменные   -----
@@ -75,9 +41,7 @@ const card = {};  //переменная пустой массив для кар
 
 
 
-
 //   -----   Перебиравем начальный массив   -----
->>>>>>> develop
 const initialCards = [
   {
     name: "Челябинская область",
@@ -112,18 +76,6 @@ initialCards.forEach(function(item, index, array) {
 
 //   -----   Прописываем функции   -----
 
-<<<<<<< HEAD
-
-// функция открытия карточки
-function showPopupCard(card) {
-  const src = card.querySelector(".elements__image").src;
-  const name = card.querySelector(".elements__place").textContent;
-  popupCard.querySelector(".popup__image").src = src;
-  popupCard.querySelector(".popup__row").textContent = name;
-  popupCard.classList.add("popup_opened");
-}
-=======
->>>>>>> develop
 
 //функция создания новой картосчки
 function createCard(item) {
@@ -183,13 +135,7 @@ function previewCard(item) {
 
 
 
-<<<<<<< HEAD
-
-// клик открытия попапа профиля пользователя
-editButtonProfile.addEventListener("click", showPopupProfile);
-=======
 //   -----   Прописываем слушатели событий   -----
->>>>>>> develop
 
 
 //функция сохранения данных попапа профиля
@@ -211,31 +157,6 @@ function handlePlaceFormSubmit(event) {
 };
 
 
-<<<<<<< HEAD
-// слушатель событий для карточки
-elements.addEventListener("click", function (event) {
-  if (event.target.className.includes("elements__like-button")) {
-    likeButton(event.target);   // клик активация и деактивация лайка
-    return;
-  }
-  if (event.target.className.includes('elements__delete-button')) {
-     deleteCard(event.target);   // клик для удаления карточки
-     return;
-  }
-  if (event.target.className.includes("elements__element")) {
-    showPopupCard(event.target);   // клик для активация попапа по элементу карточки
-    return;
-  }
-  const target = event.target.closest(".elements__element");
-  if (target) {
-    showPopupCard(target);   // клик для активация попапа по близкому элементу карточки
-  }
-});
-
-// сохранение новой карточки
-placeForm.addEventListener("submit", submitNewPlace);
-=======
-
 //слушатель открытия попапа места
 addButton.addEventListener('click', function () {
   placeNameInput.value = '';
@@ -253,16 +174,11 @@ editButton.addEventListener('click', function() {
 //слушатель закрытия попапа профиля 
 closeButtonProfile.addEventListener('click', () => closePopup(popupProfile));
 
-
 //слушатель закрытия попапа место
 closeButtonPlace.addEventListener('click', () => closePopup(popupPlace));
 
-
 //слушатель закрытия попапа карточки
 closeButtonCard.addEventListener('click', () => closePopup(popupCard));
-
-
-
 
 
 //слушатель собитый отправки данных в форму профиля
@@ -270,5 +186,3 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 //слушатель собитый отправки данных для создания карточки в форму карточки
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
-
->>>>>>> develop
