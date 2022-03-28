@@ -77,7 +77,6 @@ initialCards.forEach(function(item, index, array) {
 
 //   -----   Прописываем функции   -----
 
-
 //функция создания новой картосчки
 function createCard(item) {
 
@@ -135,10 +134,6 @@ function previewCard(item) {
 };
 
 
-
-//   -----   Прописываем слушатели событий   -----
-
-
 //функция сохранения данных попапа профиля
 function handleProfileFormSubmit(event) {
   event.preventDefault();
@@ -158,6 +153,7 @@ function handlePlaceFormSubmit(event) {
 };
 
 
+//   -----   Прописываем слушатели событий   -----
 
 //слушатель открытия попапа места
 addButton.addEventListener('click', function () {
@@ -173,18 +169,15 @@ editButton.addEventListener('click', function() {
   openPopup(popupProfile);
 });
 
+
 //слушатель закрытия попапа профиля 
 closeButtonProfile.addEventListener('click', () => closePopup(popupProfile));
-
 
 //слушатель закрытия попапа место
 closeButtonPlace.addEventListener('click', () => closePopup(popupPlace));
 
-
 //слушатель закрытия попапа карточки
 closeButtonCard.addEventListener('click', () => closePopup(popupCard));
-
-
 
 
 
