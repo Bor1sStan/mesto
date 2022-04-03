@@ -41,7 +41,6 @@ const card = {};  //переменная пустой массив для кар
 
 
 
-
 //   -----   Перебиравем начальный массив   -----
 const initialCards = [
   {
@@ -179,11 +178,8 @@ closeButtonPlace.addEventListener('click', () => closePopup(popupPlace));
 //слушатель закрытия попапа карточки
 closeButtonCard.addEventListener('click', () => closePopup(popupCard));
 
-
-
 //слушатель собитый отправки данных в форму профиля
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 //слушатель собитый отправки данных для создания карточки в форму карточки
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
-
