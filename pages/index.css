@@ -24,10 +24,13 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__row/popup__row.css);
 
-@import url(../blocks/user-data-form/user-data-form.css);
-@import url(../blocks/user-data-form/__title/user-data-form__title.css);
-@import url(../blocks/user-data-form/__input/user-data-form__input.css);
-@import url(../blocks/user-data-form/__save-button/user-data-form__save-button.css);
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__title/form__title.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/_error-type/form__error-type.css);
+@import url(../blocks/form/__error-input/form__error-input.css);
+@import url(../blocks/form/__error-input/_active/form__error-input_active.css);
+@import url(../blocks/form/__save-button/form__save-button.css);
 
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/elements/__element/elements__element.css);

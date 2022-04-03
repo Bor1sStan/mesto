@@ -1,4 +1,4 @@
-.user-data-form__input {
+.form__input {
    font-style: normal;
    font-weight: 400;
    font-size: 14px;
@@ -10,21 +10,21 @@
    margin: 0 0 22px 0;
 }
 
-.user-data-form__input:last-of-type {
+.form__input:last-of-type {
    margin: 0 0 48px 0;
 }
 
 @media (max-width: 635px) {
-   .user-data-form__input:last-of-type {
+   .form__input:last-of-type {
       margin: 0 0 45px 0;
    }
 }
 
 /* добавляем плейсхолдеры с префиксами */
 
-.user-data-form__input::-ms-input-placeholder, 
-.user-data-form__input::-webkit-input-placeholder,
-.user-data-form__input::-moz-placeholder, 
-.user-data-form__input::-o-input-placeholder {
+.form__input::-ms-input-placeholder, 
+.form__input::-webkit-input-placeholder,
+.form__input::-moz-placeholder, 
+.form__input::-o-input-placeholder {
    color: rgba(196, 196, 196, 1);
 }
