@@ -61,12 +61,16 @@
           <h2 class="form__title">Редактировать профиль</h2>
 
           <input
+            required
             name="form-name"
             id="name"
             type="text"
             class="form__input"
             value="Жак-Ив Кусто"
+            minlength="2"
+            maxlength="40"
           />
+          <span class="form__error-input">Вы пропустили это поле</span>
 
           <input
             name="form-job"
