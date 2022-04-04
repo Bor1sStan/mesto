@@ -1,79 +1,140 @@
+
+//Функция демонстрации ошибки импута
+const showInputError = (
+  formElement,
+  inputElement,
+  errorMessage,
+  inputErrorClass,
+  errorClass
+) => {
+  
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add(inputErrorClass);
+
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(errorClass);
+};
+
+
+//Функция скрытия ошибки импута
+const hideInputError = (
+   formElement,
+   inputElement,
+   inputErrorClass,
+   errorClass
+) => {
+
+   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+   inputElement.classList.remove(inputErrorClass);
+
+   errorElement.classList.remove(errorClass);
+   errorElement.textContent = '';
+};
+
+
+//Функция валидности вносимых значений импута
+const isValid = (
+   formElement,
+   inputElement,
+   { inputErrorClass, errorClass }
+) => {
+   if (!inputElement.validity.valid) {
+     showInputError(formElement, inputElement, inputElement.validationMessage, inputErrorClass, errorClass);
+   } else {
+     hideInputError(formElement, inputElement, inputErrorClass, errorClass);
+   }
+};
+
+
+// функция валидности импутов формы
+const hasInvalidInput = (inputList) => {
+   return inputList.some((inputElement) => {
+     return !inputElement.validity.valid;;
+   })
+};
+
+
+// функция переключения кнопки
+const toggleButtonState = (
+   inputList,
+   buttonElement,
+   inactiveButtonClass
+   ) => {
+   
+   if (hasInvalidInput(inputList)) {
+     
+     buttonElement.classList.add(inactiveButtonClass);
+     buttonElement.setAttribute("disabled", "true");
+   } else {
+     buttonElement.classList.remove(inactiveButtonClass);
+     buttonElement.removeAttribute("disabled");
+ 
+   }
+};
+
+
+// вешаем обработчик событий проверки валидации для импутов
+const setEventListeners = (
+   formElement,
+   { inputSelector, submitButtonSelector, inactiveButtonClass, ...rest }
+   ) => {
+   
+   const inputList = Array.from(formElement.querySelectorAll(inputSelector));   
+   const buttonElement = formElement.querySelector(submitButtonSelector);
+   
+   toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+
+   inputList.forEach((inputElement) => {
+     inputElement.addEventListener('input', () => {
+      isValid(formElement, inputElement, rest);
+      toggleButtonState(inputList, buttonElement, inactiveButtonClass)
+   });
+});
+
+
+// вешаем обработчик событий
+editButton.addEventListener('click', function() {
+
+   nameInput.value = profileName.textContent
+   jobInput.value = profileJob.textContent
+
+   toggleButtonState(inputList, buttonElement, inactiveButtonClass)
+   openPopup(popupProfile);
+ });
+
+ addButton.addEventListener('click', function() {
+   
+   popupPlace.reset();
+
+   toggleButtonState(inputList, buttonElement, inactiveButtonClass)
+   openPopup(popupPlace);
+ });
+};
+
+
+// стартует функцию валидации
+const enableValidation = (
+   { formSelector, ...rest }
+) => {
+   
+   const formList = Array.from(document.querySelectorAll(formSelector))
+   formList.forEach((formElement) => {
+     formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+   })
+     setEventListeners(formElement, rest);
+   })
+};
+
+
 // включение валидации вызовом enableValidation
 // все настройки передаются при вызове
 
-function enableValidation({
-  formSelector,
-  inputSelector,
-  submitButtonSelector,
-  errorSelector,
-  inactiveButtonClass,
-  inputErrorClass,
-  errorClass,
-  validate
-}) {
-  const form = document.querySelector(formSelector);
-  const input = form.querySelector(inputSelector);
-  const submitButton = form.querySelector(submitButtonSelector);
-  const error = form.querySelector(errorSelector);
-
-
-  
-  form.addEventListener('submit', function(evt) {
-    evt.preventDefault()
-    const errorMessage = validate(input.value);
-    if (errorMessage) {
-      error.classList.add(errorClass);
-      error.textContent = errorMessage;
-      input.classList.add(inputErrorClass);
-      submitButton.classList.add(inactiveButtonClass);
-      submitButton.disabled = true;
-      evt.stopImmediatePropagation();
-      return
-    }
-  })
-
-  input.addEventListener('input', function(evt) {
-    const errorMessage = validate(evt.target.value);
-    console.log(errorMessage, evt.target.value);
-    if (errorMessage) {
-      error.classList.add(errorClass);
-      error.textContent = errorMessage;
-      input.classList.add(inputErrorClass);
-      submitButton.classList.add(inactiveButtonClass);
-      submitButton.disabled = true;
-      return
-    }
-    error.classList.remove(errorClass);
-      input.classList.remove(inputErrorClass);
-      submitButton.classList.remove(inactiveButtonClass);
-      submitButton.disabled = false;
-  })
-}
-
-
-
 enableValidation({
-  formSelector: "#profileForm",
-  inputSelector: "#name",
-  submitButtonSelector: "#profile-save-button",
-  inactiveButtonClass: ".popup__button_disabled",
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__save-button",
+  inactiveButtonClass: "form__save-button_disabled",
   inputErrorClass: "form__input_error-type",
-  errorClass: "form__error-input_active",
-  errorSelector: "#name-error",
-  validate: validateName
+  errorClass: "form__error_visible",
 });
-
-const EMPTY_FIELD_ERROR_MESSAGE = "Вы пропустили это поле";
-
-function validateName(value) {
-  if (!value) {
-    return EMPTY_FIELD_ERROR_MESSAGE;
-  }
-  if (value.length < 2) {
-    return `Минимальное количество символов: 2. Длина текста сейчас: ${value.length} символ.`;
-  }
-  if (value.length > 40) {
-    return `Максимальное количество символов: 40. Длина текста сейчас: ${value.length} символ.`;
-  }
-  return null;
-}

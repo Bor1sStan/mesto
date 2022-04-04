@@ -1,24 +1,15 @@
 .form__input {
+   position: relative;
    font-style: normal;
    font-weight: 400;
    font-size: 14px;
-   line-height: 35px;
+   line-height: 17px;
    width: 100%;
-   padding: 0;
+   padding: 0 0 10px;
    border: none;
    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-   margin: 0 0 22px 0;
 }
 
-.form__input:last-of-type {
-   margin: 0 0 48px 0;
-}
-
-@media (max-width: 635px) {
-   .form__input:last-of-type {
-      margin: 0 0 45px 0;
-   }
-}
 
 /* добавляем плейсхолдеры с префиксами */
 
