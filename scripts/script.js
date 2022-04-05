@@ -34,13 +34,11 @@ const elementPlace = document.querySelector('.elements__place');  //переме
 
 //переменная для попапов
 const popUp = document.querySelectorAll('.popup');  //переменная попапов
-// const popUpOpened = document.querySelector('.popup_opened');  //переменная открытых попапов
 
 //пременные для карточек массива
 const cardTemplate = document.querySelector('#card');  //переменная карточек
 const cardElement = document.querySelector('.elements');  //переменная элементов карточек
 const card = {};  //переменная пустой массив для карточки
-
 
 
 //   -----   Перебиравем начальный массив   -----
@@ -192,42 +190,8 @@ editButton.addEventListener('click', function() {
   openPopup(popupProfile);
 });
 
-
-// //слушатель закрытия попапа профиля 
-// closeButtonProfile.addEventListener('click', () => closePopup(popupProfile));
-
-// //слушатель закрытия попапа место
-// closeButtonPlace.addEventListener('click', () => closePopup(popupPlace));
-
-// //слушатель закрытия попапа карточки
-// closeButtonCard.addEventListener('click', () => closePopup(popupCard));
-
 //слушатель собитый отправки данных в форму профиля
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 //слушатель собитый отправки данных для создания карточки в форму карточки
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
-
-
-//пытаемся прописать закрытия попапа черз оверлей или кнопку крестика
-const popUp = document.querySelectorAll('.popup'); //перебираем все константы для попапа
-
-popUp.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup)
-    }
-    if (evt.target.classlist.contains('popup__close-button')) {
-      closePopup(popup)
-    }
-  })
-});
-
-//закрытия на кнопку Esc   
-
-// это не правильно -- надо переписывать
-popUp.addEventListener('keydown', (evt) => {
-  if ('keydown' === 'Escape') {
-    closePopup(popUp)
-  }
-})
