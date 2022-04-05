@@ -2,7 +2,7 @@
 
 //   -----   Прописываем переменные   -----
 
-// переменные кнопок
+//переменные кнопок
 const editButton = document.querySelector('.profile__edit-button');  //переменная кнопки редактирования профиля
 const addButton = document.querySelector('.profile__add-button');  //переменная кнопки добавления новой карточки
 const closeButtonProfile = document.querySelector('#close-button-profile');  //переменная кнопки крестика для закрытия попапа пользователя
@@ -11,7 +11,7 @@ const closeButtonCard = document.querySelector('#close-button-card');  //пер�
 const saveButtonProfile = document.querySelector('#profile-save-button');  //переменная кнопки сохранить для отправки данных профиля
 const createButtonPlace = document.querySelector('#place-create-button');  //переменная кнопки сохранить для отправки данных профиля 
 
-// переменные для попапа профиля
+//переменные для попапа профиля
 const popupProfile = document.querySelector('#popup-profile');  //переменная попапа профиля
 const profileName = document.querySelector('.profile__name');  //переменная имени профиля
 const profileJob = document.querySelector('.profile__job');  //переменная работы профиля
@@ -19,22 +19,22 @@ const nameInput = document.querySelector('#name');  //переменная им�
 const jobInput = document.querySelector('#job');  //переменная импута работы профиля
 const profileForm = document.querySelector('#profileForm');  //переменная формы профиля
 
-// переменные для попапа места
+//переменные для попапа места
 const popupPlace = document.querySelector('#popup-place');  //переменная попапа места
 const placeNameInput = document.querySelector('#place');  //переменная импута имени места
 const placeWebsiteInput = document.querySelector('#website');  //переменная импута ссылки места
 const placeForm = document.querySelector('#placeForm');  //переменная формы места
 
-// переменные для попапа карточки
+//переменные для попапа карточки
 const popupCard = document.querySelector('#popup-card');  //переменная попапа карточки
 const popupImage = document.querySelector('.popup__image');  //переменная картинки места для попапа
 const popupName = document.querySelector('.popup__row');  //переменная имени места картинки для попапа
 const elementImage = document.querySelector('.elements__image');  //переменная картинки элемента карточки
 const elementPlace = document.querySelector('.elements__place');  //переменная названия места элемента карточки
 
-
-
-
+//переменная для попапов
+const popUp = document.querySelectorAll('.popup');  //переменная попапов
+// const popUpOpened = document.querySelector('.popup_opened');  //переменная открытых попапов
 
 //пременные для карточек массива
 const cardTemplate = document.querySelector('#card');  //переменная карточек
@@ -44,6 +44,7 @@ const card = {};  //переменная пустой массив для кар
 
 
 //   -----   Перебиравем начальный массив   -----
+
 const initialCards = [
   {
     name: "Челябинская область",
@@ -70,6 +71,7 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
   },
 ];
+
 //выводим данные из массива в карточки
 initialCards.forEach(function(item, index, array) {
   renderCard(item)
@@ -109,11 +111,13 @@ function renderCard(item) {
 //функция открытия попапов
 function openPopup(item) {
   item.classList.add('popup_opened');
+  document.addEventListener('keydown', escButtonHandler);
 };
 
 //функция закрытия попапов
 function closePopup(item) {
   item.classList.remove('popup_opened');
+  document.removeEventListener('keydown', escButtonHandler);
 };
 
 //функция лайка карточки
@@ -134,7 +138,6 @@ function previewCard(item) {
   openPopup(popupCard);
 };
 
-
 //функция сохранения данных попапа профиля
 function handleProfileFormSubmit(event) {
   event.preventDefault();
@@ -143,7 +146,6 @@ function handleProfileFormSubmit(event) {
   closePopup(popupProfile);
 };
 
-
 //функция отправки данных попапа метса
 function handlePlaceFormSubmit(event) {
   event.preventDefault();
@@ -151,6 +153,26 @@ function handlePlaceFormSubmit(event) {
   card.link = placeWebsiteInput.value;
   renderCard(card);
   closePopup(popupPlace);
+};
+
+//функция закрытия попапа на оверлей и кнопки на крестик
+popUp.forEach((item) => {
+  item.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(item);
+    }
+    if (evt.target.classList.contains('popup__close-button')) {
+      closePopup(item)
+    }
+  });  
+});
+
+//функция закрытия попапа на кнопку Escape
+const escButtonHandler = (evt) => {
+  if (evt.key === 'Escape') {
+    const popUpOpened = document.querySelector('.popup_opened');  //переменная открытых попапов
+    closePopup(popUpOpened);
+  }
 };
 
 
@@ -171,14 +193,14 @@ editButton.addEventListener('click', function() {
 });
 
 
-//слушатель закрытия попапа профиля 
-closeButtonProfile.addEventListener('click', () => closePopup(popupProfile));
+// //слушатель закрытия попапа профиля 
+// closeButtonProfile.addEventListener('click', () => closePopup(popupProfile));
 
-//слушатель закрытия попапа место
-closeButtonPlace.addEventListener('click', () => closePopup(popupPlace));
+// //слушатель закрытия попапа место
+// closeButtonPlace.addEventListener('click', () => closePopup(popupPlace));
 
-//слушатель закрытия попапа карточки
-closeButtonCard.addEventListener('click', () => closePopup(popupCard));
+// //слушатель закрытия попапа карточки
+// closeButtonCard.addEventListener('click', () => closePopup(popupCard));
 
 //слушатель собитый отправки данных в форму профиля
 profileForm.addEventListener('submit', handleProfileFormSubmit);
