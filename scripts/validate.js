@@ -49,7 +49,7 @@ const isValid = (
 // функция валидности импутов формы
 const hasInvalidInput = (inputList) => {
    return inputList.some((inputElement) => {
-     return !inputElement.validity.valid;;
+     return !inputElement.validity.valid;
    })
 };
 

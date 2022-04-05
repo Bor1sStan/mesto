@@ -27,12 +27,14 @@ const placeForm = document.querySelector('#placeForm');  //переменная 
 
 // переменные для попапа карточки
 const popupCard = document.querySelector('#popup-card');  //переменная попапа карточки
-
 const popupImage = document.querySelector('.popup__image');  //переменная картинки места для попапа
 const popupName = document.querySelector('.popup__row');  //переменная имени места картинки для попапа
-
 const elementImage = document.querySelector('.elements__image');  //переменная картинки элемента карточки
 const elementPlace = document.querySelector('.elements__place');  //переменная названия места элемента карточки
+
+
+
+
 
 //пременные для карточек массива
 const cardTemplate = document.querySelector('#card');  //переменная карточек
