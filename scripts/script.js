@@ -207,3 +207,27 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 //слушатель собитый отправки данных для создания карточки в форму карточки
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
+
+
+//пытаемся прописать закрытия попапа черз оверлей или кнопку крестика
+const popUp = document.querySelectorAll('.popup'); //перебираем все константы для попапа
+
+popUp.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup)
+    }
+    if (evt.target.classlist.contains('popup__close-button')) {
+      closePopup(popup)
+    }
+  })
+});
+
+//закрытия на кнопку Esc   
+
+// это не правильно -- надо переписывать
+popUp.addEventListener('keydown', (evt) => {
+  if ('keydown' === 'Escape') {
+    closePopup(popUp)
+  }
+})
