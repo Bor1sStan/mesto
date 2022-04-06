@@ -85,8 +85,6 @@ function createCard(item) {
   const likeButton = newCard.querySelector('.elements__like-button');
   const deleteButton = newCard.querySelector('.elements__delete-button');
   
-  console.log("1", item);
-
   //слушатели событий внутренних переменных
   cardPhoto.addEventListener('click', () => previewCard(item));
   likeButton.addEventListener('click', likeCard);
@@ -187,8 +185,6 @@ buttonEdit.addEventListener('click', function() {
   jobInput.value = profileJob.textContent;
   openPopup(popupProfile);
 });
-
-
 
 //слушатель собитый отправки данных в форму профиля
 profileForm.addEventListener('submit', handleProfileFormSubmit);

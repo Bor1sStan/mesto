@@ -36,7 +36,6 @@ const isValid = (
       formElement,
       inputElement,
       inputElement.validationMessage,
-      // errorMessage,// ----- ???????????????
       inputErrorClass,
       errorClass
     );
@@ -99,7 +98,6 @@ const checkSaveButton = () => {
 
 // вешаем обработчик событий проверки кнопки
 buttonEdit.addEventListener('click', checkSaveButton);
-
 buttonAdd.addEventListener('click', checkSaveButton);
 
 
@@ -116,5 +114,5 @@ const enableValidation = ({ formSelector, ...rest }) => {
 
 // включение валидации вызовом enableValidation
 // все настройки передаются при вызове
-
+// вынес параметры в отдельную функцию
 enableValidation(formValidationParams);
