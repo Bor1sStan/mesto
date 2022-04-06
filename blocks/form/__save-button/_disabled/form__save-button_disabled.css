@@ -6,7 +6,3 @@
    cursor: auto;
    transition: none;
 }
-
-.form__save-button_disabled:hover {
-   opacity: 0.2;
-}

@@ -3,13 +3,10 @@
 //   -----   Прописываем переменные   -----
 
 //переменные кнопок
-const editButton = document.querySelector('.profile__edit-button');  //переменная кнопки редактирования профиля
-const addButton = document.querySelector('.profile__add-button');  //переменная кнопки добавления новой карточки
-const closeButtonProfile = document.querySelector('#close-button-profile');  //переменная кнопки крестика для закрытия попапа пользователя
-const closeButtonPlace = document.querySelector('#close-button-place');  //переменная кнопки крестика для закрытия попапа места
-const closeButtonCard = document.querySelector('#close-button-card');  //переменная кнопки крестика для закрытия попапа карточки
-const saveButtonProfile = document.querySelector('#profile-save-button');  //переменная кнопки сохранить для отправки данных профиля
-const createButtonPlace = document.querySelector('#place-create-button');  //переменная кнопки сохранить для отправки данных профиля 
+const buttonEdit = document.querySelector('.profile__edit-button');  //переменная кнопки редактирования профиля
+const buttonAdd = document.querySelector('.profile__add-button');  //переменная кнопки добавления новой карточки
+const buttonSaveProfile = document.querySelector('#profile-save-button');  //переменная кнопки сохранить для отправки данных профиля
+const buttonCreatePlace = document.querySelector('#place-create-button');  //переменная кнопки сохранить для отправки данных профиля 
 
 //переменные для попапа профиля
 const popupProfile = document.querySelector('#popup-profile');  //переменная попапа профиля
@@ -33,12 +30,12 @@ const elementImage = document.querySelector('.elements__image');  //переме
 const elementPlace = document.querySelector('.elements__place');  //переменная названия места элемента карточки
 
 //переменная для попапов
-const popUp = document.querySelectorAll('.popup');  //переменная попапов
+const popupList = document.querySelectorAll('.popup');  //переменная попапов
 
 //пременные для карточек массива
 const cardTemplate = document.querySelector('#card');  //переменная карточек
 const cardElement = document.querySelector('.elements');  //переменная элементов карточек
-const card = {};  //переменная пустой массив для карточки
+// const cards = {};  //переменная пустой массив для карточки
 
 
 //   -----   Перебиравем начальный массив   -----
@@ -87,6 +84,8 @@ function createCard(item) {
   const cardPhoto = newCard.querySelector('.elements__image');
   const likeButton = newCard.querySelector('.elements__like-button');
   const deleteButton = newCard.querySelector('.elements__delete-button');
+  
+  console.log("1", item);
 
   //слушатели событий внутренних переменных
   cardPhoto.addEventListener('click', () => previewCard(item));
@@ -130,6 +129,7 @@ function deleteCard(event) {
 
 //функция открытия попапа карточки
 function previewCard(item) {
+  console.log("2", item);
   popupImage.src = item.link;
   popupName.alt = item.name;
   popupName.textContent = item.name;
@@ -147,14 +147,12 @@ function handleProfileFormSubmit(event) {
 //функция отправки данных попапа метса
 function handlePlaceFormSubmit(event) {
   event.preventDefault();
-  card.name = placeNameInput.value;
-  card.link = placeWebsiteInput.value;
-  renderCard(card);
+  renderCard({name:placeNameInput.value, link:placeWebsiteInput.value});
   closePopup(popupPlace);
 };
 
 //функция закрытия попапа на оверлей и кнопки на крестик
-popUp.forEach((item) => {
+popupList.forEach((item) => {
   item.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
       closePopup(item);
@@ -168,27 +166,29 @@ popUp.forEach((item) => {
 //функция закрытия попапа на кнопку Escape
 const escButtonHandler = (evt) => {
   if (evt.key === 'Escape') {
-    const popUpOpened = document.querySelector('.popup_opened');  //переменная открытых попапов
-    closePopup(popUpOpened);
+    const popupOpened = document.querySelector('.popup_opened');  //переменная открытых попапов
+    closePopup(popupOpened);
   }
 };
 
 
-//   -----   Прописываем слушатели событий   -----
+// -----   Прописываем слушатели событий   -----
 
 //слушатель открытия попапа места
-addButton.addEventListener('click', function () {
+buttonAdd.addEventListener('click', function () {
   placeNameInput.value = '';
   placeWebsiteInput.value = '';
   openPopup(popupPlace);
 });
 
 //слушатель открытия попапа профиля 
-editButton.addEventListener('click', function() {
+buttonEdit.addEventListener('click', function() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   openPopup(popupProfile);
 });
+
+
 
 //слушатель собитый отправки данных в форму профиля
 profileForm.addEventListener('submit', handleProfileFormSubmit);
