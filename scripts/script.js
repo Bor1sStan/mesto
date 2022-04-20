@@ -127,7 +127,6 @@ function deleteCard(event) {
 
 //функция открытия попапа карточки
 function previewCard(item) {
-  console.log("2", item);
   popupImage.src = item.link;
   popupName.alt = item.name;
   popupName.textContent = item.name;
