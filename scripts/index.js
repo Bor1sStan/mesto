@@ -28,12 +28,34 @@ const initialCards = [
    },
 ];
 
-const cardContainer = document.querySelector('.elements'); 
+
+const popupCard = document.querySelector('#popup-card');  //переменная попапа карточки
+const popupImage = document.querySelector('.popup__image');  //переменная картинки места для попапа
+const popupName = document.querySelector('.popup__row');  //переменная имени места картинки для попапа
+
+
+const cardsContainer = document.querySelector('.elements'); //переменная секции карточек
+
+
+//функция создания новой картосчки
+function createCard(data) {
+  const card = new Card (data, '#card');
+  const cardElement = card.render
+  
+  cardPhoto.src = item.link;
+  cardPhoto.alt = item.name;
+  cardName.textContent = item.name;
+
+  return card;
+};
+
+
+
 
 initialCards.forEach((data) => {
    const card = new Card (data, '#card');
 
    const cardElement = card.generateCard();
 
-   cardContainer.prepend(cardElement);
+   cardsContainer.prepend(cardElement);
 })

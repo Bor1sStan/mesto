@@ -34,69 +34,68 @@ const popupList = document.querySelectorAll('.popup');  //переменная �
 
 //пременные для карточек массива
 const cardTemplate = document.querySelector('#card');  //переменная карточек
-const cardElement = document.querySelector('.elements');  //переменная элементов карточек
 // const cards = {};  //переменная пустой массив для карточки
 
 
 //   -----   Перебиравем начальный массив   -----
 
-const initialCards = [
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-];
+// const initialCards = [
+//   {
+//     name: "Челябинская область",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+//   },
+//   {
+//     name: "Иваново",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+//   },
+//   {
+//     name: "Камчатка",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+//   },
+//   {
+//     name: "Холмогорский район",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+//   },
+//   {
+//     name: "Байкал",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+//   },
+//   {
+//     name: "Архыз",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+//   },
+// ];
 
-//выводим данные из массива в карточки
-initialCards.forEach(function(item, index, array) {
-  renderCard(item)
-});
+// //выводим данные из массива в карточки
+// initialCards.forEach(function(item, index, array) {
+//   renderCard(item)
+// });
 
 
 //   -----   Прописываем функции   -----
 
-//функция создания новой картосчки
-function createCard(item) {
+// //функция создания новой картосчки
+// function createCard(item) {
 
-  //прописываем переменные
-  const newCard = cardTemplate.content.cloneNode(true);
-  const cardName = newCard.querySelector('.elements__place');
-  const cardPhoto = newCard.querySelector('.elements__image');
-  const likeButton = newCard.querySelector('.elements__like-button');
-  const deleteButton = newCard.querySelector('.elements__delete-button');
+//   //прописываем переменные
+//   const newCard = cardTemplate.content.cloneNode(true);
+//   const cardName = newCard.querySelector('.elements__place');
+//   const cardPhoto = newCard.querySelector('.elements__image');
+//   const likeButton = newCard.querySelector('.elements__like-button');
+//   const deleteButton = newCard.querySelector('.elements__delete-button');
   
-  //слушатели событий внутренних переменных
-  cardPhoto.addEventListener('click', () => previewCard(item));
-  likeButton.addEventListener('click', likeCard);
-  deleteButton.addEventListener('click', deleteCard);
+//   //слушатели событий внутренних переменных
+//   cardPhoto.addEventListener('click', () => previewCard(item));
+//   likeButton.addEventListener('click', likeCard);
+//   deleteButton.addEventListener('click', deleteCard);
 
-  //копирование значений 
-  cardPhoto.src = item.link;
-  cardPhoto.alt = item.name;
-  cardName.textContent = item.name;
+//   //копирование значений 
+//   cardPhoto.src = item.link;
+//   cardPhoto.alt = item.name;
+//   cardName.textContent = item.name;
 
-  return newCard;
-};
+//   return newCard;
+// };
 
 //функция генерации карточек
 function renderCard(item) {
