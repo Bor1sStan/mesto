@@ -40,12 +40,8 @@ const cardsContainer = document.querySelector('.elements'); //переменна
 //функция создания новой картосчки
 function createCard(data) {
   const card = new Card (data, '#card');
-  const cardElement = card.render
+  const cardElement = card.generateCard()
   
-  cardPhoto.src = item.link;
-  cardPhoto.alt = item.name;
-  cardName.textContent = item.name;
-
   return card;
 };
 
