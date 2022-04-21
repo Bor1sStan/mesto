@@ -13,6 +13,7 @@ export class Card {
       const cardElement = document
          .querySelector(this._templateSelector)
          .content
+         .querySelector('.elements__element')
          .cloneNode(true);
 
          return cardElement;
@@ -31,22 +32,27 @@ export class Card {
       this._cardPlace.textContent = this._name;
       
       this._setEventListeners();
-      
+
       return this._element
    }
 
-
+   
    _setEventListeners() {
-      this._cardLikeButton.addEventListener('click', this._likeCard);
-      this._cardDeleteButton.addEventListener('click', this._deleteCard);
+      this._cardLikeButton.addEventListener('click', () => {
+         this._handleLikeClick();
+      })
+      
+      this._cardDeleteButton.addEventListener('click', () => {
+         this._handleDeleteClick();
+      })
+   }
+   
+
+   _handleLikeClick() {
+      this._cardLikeButton.classList.toggle('elements__like-button_active')
    }
 
-   _likeCard(event) {
-      event.target.classList.toggle('elements__like-button_active');
-   };
-
-   _deleteCard(event) {
-      event.target.closest('.elements__element').remove();
-   };
-
+   _handleDeleteClick() {
+      this._element.remove('elements__element')
+   }
 }
