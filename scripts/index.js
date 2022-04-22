@@ -36,9 +36,6 @@ export const popupName = document.querySelector('.popup__row');  //переме�
 //переменная для списка попапов
 const popupList = document.querySelectorAll('.popup');  //переменная попапов
 
-//переменная для контейнера списка карточек
-const cardsContainer = document.querySelector('.elements'); //переменная секции карточек
-
 //переменные для попапа профиля
 const popupProfile = document.querySelector('#popup-profile');  //переменная попапа профиля
 const profileName = document.querySelector('.profile__name');  //переменная имени профиля
@@ -47,10 +44,47 @@ const nameInput = document.querySelector('#name');  //переменная им�
 const jobInput = document.querySelector('#job');  //переменная импута работы профиля
 const profileForm = document.querySelector('#profileForm');  //переменная формы профиля
 
+//переменные для попапа места
+const popupPlace = document.querySelector('#popup-place');  //переменная попапа места
+const placeNameInput = document.querySelector('#place');  //переменная импута имени места
+const placeWebsiteInput = document.querySelector('#website');  //переменная импута ссылки места
+const placeForm = document.querySelector('#placeForm');  //переменная формы места
+
 //переменные кнопок для попапа профиля
 const buttonEdit = document.querySelector('.profile__edit-button');  //переменная кнопки редактирования профиля
+const buttonAdd = document.querySelector('.profile__add-button');  //переменная кнопки добавления новой карточки
+const buttonCreatePlace = document.querySelector('#place-create-button');  //переменная кнопки сохранить для отправки данных профиля 
+
+//переменная для контейнера списка карточек
+const cardsContainer = document.querySelector('.elements'); //переменная секции карточек
 
 
+const cardTemplate = document.querySelector('#card');  //переменная карточек
+
+
+
+
+function handlePlaceFormSubmit(event) {
+  event.preventDefault();
+  
+  //как сюда вставить this._карточки для генерации
+
+  closePopup(popupPlace);
+};
+
+
+//слушатель событий на открытие попапа места
+buttonAdd.addEventListener('click', () => {
+  placeNameInput.value = '';
+  placeWebsiteInput.value = '';
+  openPopup(popupPlace)
+});
+
+
+
+
+// //слушатель событий на сохранение карточки из попапа места
+// placeForm.addEventListener('submit', handlePlaceFormSubmit);
 
 
 
@@ -61,6 +95,14 @@ function createCard(data) {
   
   return card;
 };
+
+//функция генерации карточки
+function generateCard(Card) {
+  cardsContainer.prepend(createCard(Card))
+}
+
+
+
 
 
 
@@ -96,8 +138,6 @@ const escButtonHandler = (evt) => {
   }
 };
 
-
-
 //функция сохранения данных профиля
 function handleProfileFormSubmit(event) {
   event.preventDefault();
@@ -105,9 +145,6 @@ function handleProfileFormSubmit(event) {
   profileJob.textContent = jobInput.value;
   closePopup(popupProfile)
 }
-
-
-
 
 //слушатель событий на открытие попапа профиля
 buttonEdit.addEventListener('click', () => {
@@ -117,8 +154,10 @@ buttonEdit.addEventListener('click', () => {
 })
 
 //слушатель событий на сохранение данных профиля ил попапа профиля
-profileForm.addEventListener('submit', handleProfileFormSubmit)
-  
+profileForm.addEventListener('submit', handleProfileFormSubmit);
+
+
+
 
 //перебираем начальный массив
 initialCards.forEach((data) => {
