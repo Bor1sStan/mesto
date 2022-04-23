@@ -58,51 +58,11 @@ const buttonCreatePlace = document.querySelector('#place-create-button');  //п�
 //переменная для контейнера списка карточек
 const cardsContainer = document.querySelector('.elements'); //переменная секции карточек
 
+//переменная для основного массива карточек
+const cards = {}; //переменная массива
+
 
 const cardTemplate = document.querySelector('#card');  //переменная карточек
-
-
-
-
-function handlePlaceFormSubmit(event) {
-  event.preventDefault();
-  
-  //как сюда вставить this._карточки для генерации
-
-  closePopup(popupPlace);
-};
-
-
-//слушатель событий на открытие попапа места
-buttonAdd.addEventListener('click', () => {
-  placeNameInput.value = '';
-  placeWebsiteInput.value = '';
-  openPopup(popupPlace)
-});
-
-
-
-
-// //слушатель событий на сохранение карточки из попапа места
-// placeForm.addEventListener('submit', handlePlaceFormSubmit);
-
-
-
-//функция создания новой карточки
-function createCard(data) {
-  const card = new Card (data, '#card');
-  const cardElement = card.generateCard()
-  
-  return card;
-};
-
-//функция генерации карточки
-function generateCard(Card) {
-  cardsContainer.prepend(createCard(Card))
-}
-
-
-
 
 
 
