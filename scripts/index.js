@@ -53,17 +53,12 @@ const placeForm = document.querySelector('#placeForm');  //переменная 
 //переменные кнопок для попапа профиля
 const buttonEdit = document.querySelector('.profile__edit-button');  //переменная кнопки редактирования профиля
 const buttonAdd = document.querySelector('.profile__add-button');  //переменная кнопки добавления новой карточки
-const buttonCreatePlace = document.querySelector('#place-create-button');  //переменная кнопки сохранить для отправки данных профиля 
 
 //переменная для контейнера списка карточек
 const cardsContainer = document.querySelector('.elements'); //переменная секции карточек
 
 //переменная для основного массива карточек
 const cards = {}; //переменная массива
-
-
-const cardTemplate = document.querySelector('#card');  //переменная карточек
-
 
 
 //функция открытия попапов
@@ -77,6 +72,41 @@ function closePopup(item) {
   item.classList.remove('popup_opened');
   document.removeEventListener('keydown', escButtonHandler);
 };
+
+
+//функция добавления новой созданной карточки в основной массив
+function addCard(card) {
+  cardsContainer.prepend(createCard(card));
+}
+
+
+//функция создания карточки из класса Card
+function createCard(cards) {
+  const card = new Card(cards, '#card');
+  const newCardElement = card.generateCard();
+
+  return newCardElement
+}
+
+//функция открытия попапа места
+buttonAdd.addEventListener('click', () =>  {
+  placeNameInput.value = '';
+  placeWebsiteInput.value = '';
+
+  openPopup(popupPlace)
+})
+
+
+//функция отправки данных попапа места для создания карточки основного массива
+function handleCreateNewPlace(evt) {
+  evt.preventDefault()
+  cards.name = placeNameInput.value;
+  cards.link = placeWebsiteInput.value;
+
+  addCard(cards);
+  closePopup(popupPlace);
+};
+
 
 //функция закрытия попапа на оверлей и кнопки на крестик
 popupList.forEach((item) => {
@@ -116,6 +146,8 @@ buttonEdit.addEventListener('click', () => {
 //слушатель событий на сохранение данных профиля ил попапа профиля
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
+//обработчик события отправки данных формы места
+placeForm.addEventListener('submit', handleCreateNewPlace)
 
 
 

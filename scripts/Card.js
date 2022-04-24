@@ -2,7 +2,7 @@ import { openPopup, popupCard, popupImage, popupName } from './index.js';
 
 
 export class Card {
-   constructor( data, templateSelector,  ) {
+   constructor( data, templateSelector ) {
       this._name = data.name;
       this._link = data.link;
       this._templateSelector = templateSelector;
