@@ -1,32 +1,6 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-
-const initialCards = [
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-];
+import { initialCards } from "./initialCards.js";
 
 //переменные для попап карточек
 export const popupCard = document.querySelector("#popup-card"); //переменная попапа карточки
@@ -58,10 +32,7 @@ export const buttonAdd = document.querySelector(".profile__add-button"); //пе�
 const cardsContainer = document.querySelector(".elements"); //переменная секции карточек
 
 //переменная для основного массива карточек
-const cards = {}; //переменная массива
-
-
-
+const cardsArray = {}; //переменная массива
 
 //переменная для параметров функции FormValidator
 const parametersFormValidator = {
@@ -71,9 +42,6 @@ const parametersFormValidator = {
   errorClass: "form__error_visible",
   submitButtonSelector: ".form__save-button"
 };
-
-
-
 
 //валидация попапа места
 const placeFormValidator = new FormValidator(parametersFormValidator, placeForm);
@@ -94,22 +62,21 @@ function closePopup(item) {
 }
 
 //функция добавления новой созданной карточки в основной массив
-function addCard(card) {
-  cardsContainer.prepend(createCard(card));
+function addCard(data) {
+  cardsContainer.prepend(createCard(data));
 }
 
 //функция создания карточки из класса Card
-function createCard(cards) {
-  const card = new Card(cards, "#card");
-  const newCardElement = card.generateCard();
+function createCard(data) {
+  const card = new Card(data, "#card");
+  const cardElement = card.generateCard();
 
-  return newCardElement;
+  return cardElement;
 }
 
 //функция открытия попапа места
 buttonAdd.addEventListener("click", () => {
-  placeNameInput.value = "";
-  placeWebsiteInput.value = "";
+  placeForm.reset()
 
   placeFormValidator.enableValidation();
   openPopup(popupPlace);
@@ -118,10 +85,10 @@ buttonAdd.addEventListener("click", () => {
 //функция отправки данных попапа места для создания карточки основного массива
 function handleCreateNewPlace(evt) {
   evt.preventDefault();
-  cards.name = placeNameInput.value;
-  cards.link = placeWebsiteInput.value;
+  cardsArray.name = placeNameInput.value;
+  cardsArray.link = placeWebsiteInput.value;
 
-  addCard(cards);
+  addCard(cardsArray);
   closePopup(popupPlace);
 }
 
@@ -170,9 +137,8 @@ placeForm.addEventListener("submit", handleCreateNewPlace);
 
 //перебираем начальный массив
 initialCards.forEach((data) => {
-  const card = new Card(data, "#card");
+  createCard(data)
 
-  const cardElement = card.generateCard();
-
-  cardsContainer.prepend(cardElement);
+  cardsContainer.prepend(createCard(data));
 });
+
