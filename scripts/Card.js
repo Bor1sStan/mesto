@@ -1,14 +1,11 @@
 import { openPopup, popupCard, popupImage, popupName } from './index.js';
 
-
 export class Card {
    constructor( data, templateSelector ) {
       this._name = data.name;
       this._link = data.link;
       this._templateSelector = templateSelector;
-      
    }
-
 
    _getTemplate() {
       const cardElement = document
@@ -36,7 +33,6 @@ export class Card {
 
       return this._element
    }
-
    
    _setEventListeners() {
       this._cardLikeButton.addEventListener('click', () => {
