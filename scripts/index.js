@@ -61,25 +61,25 @@ const cardsContainer = document.querySelector(".elements"); //переменна
 const cards = {}; //переменная массива
 
 
-//валидация попапа места
-const placeFormValidator = new FormValidator({
+
+
+//переменная для параметров функции FormValidator
+const parametersFormValidator = {
   inputSelector: ".form__input",
   inactiveButtonClass: "form__save-button_disabled",
   inputErrorClass: "form__input_error-type",
   errorClass: "form__error_visible",
   submitButtonSelector: ".form__save-button"
-}, placeForm);
+};
 
+
+
+
+//валидация попапа места
+const placeFormValidator = new FormValidator(parametersFormValidator, placeForm);
 
 //валидация попапа профиля
-const profileFormValidator = new FormValidator({
-  inputSelector: ".form__input",
-  inactiveButtonClass: "form__save-button_disabled",
-  inputErrorClass: "form__input_error-type",
-  errorClass: "form__error_visible",
-  submitButtonSelector: ".form__save-button"
-}, profileForm);
-
+const profileFormValidator = new FormValidator(parametersFormValidator, profileForm);
 
 //функция открытия попапов
 export function openPopup(item) {
