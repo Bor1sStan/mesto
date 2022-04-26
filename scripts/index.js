@@ -46,8 +46,14 @@ const parametersFormValidator = {
 //валидация попапа места
 const placeFormValidator = new FormValidator(parametersFormValidator, placeForm);
 
+//функция валидации формы места
+placeFormValidator.enableValidation();
+
 //валидация попапа профиля
 const profileFormValidator = new FormValidator(parametersFormValidator, profileForm);
+
+//функция валидации формы профиля
+profileFormValidator.enableValidation();
 
 //функция открытия попапов
 export function openPopup(item) {
@@ -78,7 +84,6 @@ function createCard(data) {
 buttonAdd.addEventListener("click", () => {
   placeForm.reset()
 
-  placeFormValidator.enableValidation();
   openPopup(popupPlace);
 });
 
@@ -87,6 +92,7 @@ function handleCreateNewPlace(evt) {
   evt.preventDefault();
   cardsArray.name = placeNameInput.value;
   cardsArray.link = placeWebsiteInput.value;
+
 
   addCard(cardsArray);
   closePopup(popupPlace);
@@ -125,7 +131,6 @@ buttonEdit.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   
-  profileFormValidator.enableValidation();
   openPopup(popupProfile);
 });
 

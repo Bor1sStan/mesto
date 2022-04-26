@@ -51,7 +51,7 @@ export class Card {
    
    _handleShowCardClick() {
       popupImage.src = this._link;
-      popupName.alt = this._name;
+      popupImage.alt = this._name;
       popupName.textContent = this._name;
       openPopup(popupCard)
    }
@@ -61,6 +61,7 @@ export class Card {
    }
 
    _handleDeleteClick() {
-      this._element.remove('elements__element')
+      this._element.remove();
+      this._element = null;
    }
 }
