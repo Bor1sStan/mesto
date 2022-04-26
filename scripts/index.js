@@ -142,8 +142,6 @@ placeForm.addEventListener("submit", handleCreateNewPlace);
 
 //перебираем начальный массив
 initialCards.forEach((data) => {
-  createCard(data)
-
-  cardsContainer.prepend(createCard(data));
+  addCard(data)
 });
 
