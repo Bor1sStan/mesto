@@ -49,6 +49,8 @@ const placeFormValidator = new FormValidator(parametersFormValidator, placeForm)
 //функция валидации формы места
 placeFormValidator.enableValidation();
 
+// placeFormValidator.showButtonState()
+
 //валидация попапа профиля
 const profileFormValidator = new FormValidator(parametersFormValidator, profileForm);
 
@@ -84,15 +86,21 @@ function createCard(data) {
 buttonAdd.addEventListener("click", () => {
   placeForm.reset()
 
+  placeFormValidator.toggleButtonState()
+
   openPopup(popupPlace);
 });
 
 //функция отправки данных попапа места для создания карточки основного массива
 function handleCreateNewPlace(evt) {
   evt.preventDefault();
+
+  placeFormValidator.toggleButtonState()
+
   cardsArray.name = placeNameInput.value;
   cardsArray.link = placeWebsiteInput.value;
 
+  placeFormValidator.resetValidation()
 
   addCard(cardsArray);
   closePopup(popupPlace);
@@ -102,9 +110,13 @@ function handleCreateNewPlace(evt) {
 popupList.forEach((item) => {
   item.addEventListener("mousedown", (evt) => {
     if (evt.target.classList.contains("popup_opened")) {
+      placeFormValidator.resetValidation()
+      profileFormValidator.resetValidation()
       closePopup(item);
     }
     if (evt.target.classList.contains("popup__close-button")) {
+      placeFormValidator.resetValidation()
+      profileFormValidator.resetValidation()
       closePopup(item);
     }
   });
@@ -114,6 +126,8 @@ popupList.forEach((item) => {
 const escButtonHandler = (evt) => {
   if (evt.key === "Escape") {
     const popupOpened = document.querySelector(".popup_opened"); //переменная открытых попапов
+    placeFormValidator.resetValidation()
+    profileFormValidator.resetValidation()
     closePopup(popupOpened);
   }
 };
@@ -144,4 +158,3 @@ placeForm.addEventListener("submit", handleCreateNewPlace);
 initialCards.forEach((data) => {
   addCard(data)
 });
-
