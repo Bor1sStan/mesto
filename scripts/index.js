@@ -49,8 +49,6 @@ const placeFormValidator = new FormValidator(parametersFormValidator, placeForm)
 //функция валидации формы места
 placeFormValidator.enableValidation();
 
-// placeFormValidator.showButtonState()
-
 //валидация попапа профиля
 const profileFormValidator = new FormValidator(parametersFormValidator, profileForm);
 
@@ -86,7 +84,9 @@ function createCard(data) {
 buttonAdd.addEventListener("click", () => {
   placeForm.reset()
 
-  placeFormValidator.toggleButtonState()
+  placeFormValidator.toggleButtonState();
+
+  placeFormValidator.resetValidation();
 
   openPopup(popupPlace);
 });
@@ -95,12 +95,8 @@ buttonAdd.addEventListener("click", () => {
 function handleCreateNewPlace(evt) {
   evt.preventDefault();
 
-  placeFormValidator.toggleButtonState()
-
   cardsArray.name = placeNameInput.value;
   cardsArray.link = placeWebsiteInput.value;
-
-  placeFormValidator.resetValidation()
 
   addCard(cardsArray);
   closePopup(popupPlace);
@@ -110,13 +106,9 @@ function handleCreateNewPlace(evt) {
 popupList.forEach((item) => {
   item.addEventListener("mousedown", (evt) => {
     if (evt.target.classList.contains("popup_opened")) {
-      placeFormValidator.resetValidation()
-      profileFormValidator.resetValidation()
       closePopup(item);
     }
     if (evt.target.classList.contains("popup__close-button")) {
-      placeFormValidator.resetValidation()
-      profileFormValidator.resetValidation()
       closePopup(item);
     }
   });
@@ -126,8 +118,6 @@ popupList.forEach((item) => {
 const escButtonHandler = (evt) => {
   if (evt.key === "Escape") {
     const popupOpened = document.querySelector(".popup_opened"); //переменная открытых попапов
-    placeFormValidator.resetValidation()
-    profileFormValidator.resetValidation()
     closePopup(popupOpened);
   }
 };
@@ -135,8 +125,10 @@ const escButtonHandler = (evt) => {
 //функция сохранения данных профиля
 function handleProfileFormSubmit(event) {
   event.preventDefault();
+
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
+
   closePopup(popupProfile);
 }
 
@@ -145,6 +137,10 @@ buttonEdit.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   
+  profileFormValidator.toggleButtonState();
+
+  profileFormValidator.resetValidation();
+
   openPopup(popupProfile);
 });
 
