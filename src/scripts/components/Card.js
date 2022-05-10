@@ -1,10 +1,12 @@
-import { openPopup, popupCard, popupImage, popupName } from './index.js';
 
-export class Card {
-   constructor( data, templateSelector ) {
-      this._name = data.name;
-      this._link = data.link;
+//Свяжите класс Card c попапом. Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick. Эта функция должна открывать попап с картинкой при клике на карточку
+
+export default class Card {
+   constructor( { name, link }, templateSelector, handleCardClick ) {
+      this._name = name;
+      this._link = link;
       this._templateSelector = templateSelector;
+      this._handleCardClick = handleCardClick;
    }
 
    _getTemplate() {
@@ -44,17 +46,16 @@ export class Card {
       })
 
       this._cardImage.addEventListener('click', () => {
-         this._handleShowCardClick(this._name, this._link);
+         this._handleCardClick();
       })
-
    }
    
-   _handleShowCardClick() {
-      popupImage.src = this._link;
-      popupImage.alt = this._name;
-      popupName.textContent = this._name;
-      openPopup(popupCard)
-   }
+   // _handleCardClick() {
+   //    this._cardImage.src = this._link;
+   //    this._cardImage.alt = this._name;
+   //    this._cardPlace.textContent = this._name;
+   //    super.open()
+   // }
 
    _handleLikeClick() {
       this._cardLikeButton.classList.toggle('elements__like-button_active')

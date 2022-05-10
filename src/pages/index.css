@@ -23,7 +23,7 @@
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__card/popup__card.css);
 @import url(../blocks/popup/__image/popup__image.css);
-@import url(../blocks/popup/__row/popup__row.css);
+@import url(../blocks/popup/__name/popup__name.css);
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__title/form__title.css);
