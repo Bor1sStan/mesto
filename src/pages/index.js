@@ -1,90 +1,93 @@
+import "./index.css"; //это css подключаем в js
 
 // В этом файлы должны быть прописаны функции, создание новых классов, попапов и форм валидации. Все переменные прописаны в units|constants.
 
-import Card from '../scripts/components/Card.js';
-import FormValidator from '../scripts/components/FormValidator.js.js';
-import Popup from '../scripts/components/Popup.js';
-import PopupWithForm from '../scripts/components/PopupWithForm.js';
-import PopupWithImage from '../scripts/components/PopupWithImage.js';
-import Section from '../scripts/components/Section.js';
-import UserInfo from '../scripts/components/UserInfo.js';
+import Card from "../scripts/components/Card";
+import FormValidator from "../scripts/components/FormValidator";
+import PopupWithForm from "../scripts/components/PopupWithForm";
+import PopupWithImage from "../scripts/components/PopupWithImage";
+import Section from "../scripts/components/Section";
+import UserInfo from "../scripts/components/UserInfo";
 
-
-import { 
-
+import {
   parametersFormValidator,
   placeForm,
   profileForm,
   popupCardImage,
-  cardTemplate
+  cardTemplate,
+  buttonEdit,
+  buttonAdd,
+} from "../scripts/units/constants";
 
+import { initialCards } from "../scripts/units/initialCards";
 
+//данные пользователя
+const profile = new UserInfo({
+  nameSelector: ".profile__name",
+  jobSelector: ".profile__job",
+});
 
-} from '../scripts/units/constants.js';
-
-
-import { initialCards } from '../scripts/units/initialCards.js';
-
-
-
-//данные пользователя  
-const profile = new UserInfo( {nameSelector: '.profile__name', jobSelector: '.profile__job'} )
-
-
-const initialCardList = new Section({
-  data: initialCards,
-  renderer: (cardData) => {
-    initialCardList.addItem(renderCard(cardData));
-  }
-}, '.elements')
-initialCardList.renderer();
-
+const initialCardList = new Section(
+  {
+    data: initialCards,
+    renderer: renderCard,
+  },
+  ".elements"
+);
+initialCardList.renderItems();
 
 //попап картинки
-const popupImage = new PopupWithImage(popupCardImage);
-popupImage.setEventListeners()
-
+const popupImage = new PopupWithImage("#popup-card");
+popupImage.setEventListeners();
 
 //функция подбора карточки
 function renderCard(cardData) {
-  const card = new Card ( { name: cardData.name, link: cardData.link }, cardTemplate, () => { 
-    //функция открытия карточки попапа при клике
-    popupImage.open( { name: cardData.name, link: cardData.link } )
+  const card = new Card(
+    { name: cardData.name, link: cardData.link },
+    "#card",
+    () => {
+      //функция открытия карточки попапа при клике
+      popupImage.open({ name: cardData.name, link: cardData.link });
+    }
+  );
 
-    return card.generateCard()
-  } )
+  return card.generateCard();
 }
 
-
 //попап формы профиля s
-const profilePopup = new PopupWithForm( {
-  popupSelector: '#popup-profile',
-  handleFormSubmit: (data) => { //это колбэк сабмита формы 
+const profilePopup = new PopupWithForm({
+  popupSelector: "#popup-profile",
+  handleFormSubmit: (data) => {
+    //это колбэк сабмита формы
     initialCardList.addItem(renderCard(data));
-    profilePopup.close();
-  }
+    // profilePopup.close();
+  },
+  buttonOpen: ".profile__edit-button",
 });
 profilePopup.setEventListeners();
 
-
-//попап формы места 
-const placePopup = new PopupWithForm( {
-  popupSelector: '#popup-place',
-  handleFormSubmit: (data) => { //это колбэк сабмита формы 
+//попап формы места
+const placePopup = new PopupWithForm({
+  popupSelector: "#popup-place",
+  handleFormSubmit: (data) => {
+    //это колбэк сабмита формы
     initialCardList.addItem(renderCard(data));
-    placePopup.close();
-  }
+    // placePopup.close();
+  },
+  buttonOpen: ".profile__add-button",
 });
-placePopup.setEventListeners()
-
+placePopup.setEventListeners();
 
 //валидация попапа формы места
-const placeFormValidator = new FormValidator(parametersFormValidator, placeForm);
-placeFormValidator.enableValidation();//функция валидации формы места
-
+const placeFormValidator = new FormValidator(
+  parametersFormValidator,
+  placeForm
+);
+placeFormValidator.enableValidation(); //функция валидации формы места
 
 //валидация попапа формы профиля
-const profileFormValidator = new FormValidator(parametersFormValidator, profileForm);
+const profileFormValidator = new FormValidator(
+  parametersFormValidator,
+  profileForm
+);
 profileFormValidator.enableValidation(); //функция валидации формы профиля
-
-

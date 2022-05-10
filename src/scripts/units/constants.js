@@ -1,4 +1,4 @@
-export const popupCardImage = document.querySelector("#popup-card");  //переменная попапа изображения места
+// export const popupCardImage = document.querySelector("#popup-card");  //переменная попапа изображения места
 
 //переменная для списка попапов
 export const cardTemplate = document.querySelectorAll("#card");  //переменная попапов

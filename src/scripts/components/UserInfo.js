@@ -1,12 +1,12 @@
 
 
-export class UserInfo {  //Класс UserInfo отвечает за управление отображением информации о пользователе на странице.
+export default class UserInfo {  //Класс UserInfo отвечает за управление отображением информации о пользователе на странице.
    constructor( {nameSelector, jobSelector} ) {
       //Принимает в конструктор объект с селекторами двух элементов: элемента имени пользователя и элемента информации о себе.
       this._name = document.querySelector(nameSelector);
-      this._nameInput = document.querySelector('${nameSelector}-input');
+      this._nameInput = document.querySelector(`${nameSelector}-input`);
       this._job = document.querySelector(jobSelector);
-      this._jobInput = document.querySelector('${jobSelector}-input');
+      this._jobInput = document.querySelector(`${jobSelector}-input`);
    }
 
    getUserInfo() {

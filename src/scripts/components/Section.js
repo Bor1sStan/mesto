@@ -7,9 +7,10 @@ export default class Section {  //отвечает за отрисовку эл�
       this._container = document.querySelector(containerSelector);
    }
 
-   renderer() {
+   renderItems() {
       this._initialArray.forEach( item => {
-         this._renderer(item)
+         const newElement = this._renderer(item)
+         this._container.prepend(newElement)
       })
    }
 

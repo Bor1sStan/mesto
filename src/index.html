@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css" />
+    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
   </head>
   <body class="body">
     <header class="header">
-      <img src="./images/Vector.svg" alt="Место лого" class="header__logo" />
+      <img src="Vector.svg" alt="Место лого" class="header__logo" />
     </header>
 
     <main>
@@ -17,16 +17,20 @@
 
       <section class="profile">
         <div class="profile__menu">
-          <img src="./images/custo.svg" alt="Аватар" class="profile__avatar" />
+          <img src="custo.svg" alt="Аватар" class="profile__avatar" />
           <div class="profile__info">
             <div class="profile__high-row">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button class="profile__edit-button" type="button"></button>
+              <button class="profile__edit-button" 
+              id="open-button"
+              type="button"></button>
             </div>
             <p class="profile__job">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__add-button" type="button"></button>
+        <button class="profile__add-button"
+        id="open-button" 
+        type="button"></button>
       </section>
 
       <!--  секция шаблона карточек  -->
@@ -163,7 +167,7 @@
       </div>
     </article>
 
-    <script src="./pages/index.js" type="module"></script>
+    <!-- <script src="./pages/index.js" type="module"></script> -->
     
   </body>
 </html>

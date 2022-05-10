@@ -5,6 +5,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 // подключите к проекту mini-css-extract-plugin
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+// настройка статических изображений в html
+const CopyPlugin = require("copy-webpack-plugin");
+
 module.exports = {
   entry: { main: "./src/pages/index.js" },
   output: {
@@ -55,6 +58,11 @@ module.exports = {
       template: "./src/index.html", // путь к файлу index.html
     }),
     new MiniCssExtractPlugin(), // подключение плагина для объединения файлов
+    new CopyPlugin({
+      patterns: [
+        path.resolve(__dirname, "src", "static"),
+      ],
+    }), //путь нашего плагина статик для изображений в html
   ],
   //   mode: "production",
   devServer: {
@@ -64,6 +72,7 @@ module.exports = {
 
     open: true, // сайт будет открываться сам при запуске npm run dev
   },
+
 };
 
 // переписали точку выхода, используя утилиту path
