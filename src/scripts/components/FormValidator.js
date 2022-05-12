@@ -1,7 +1,8 @@
-
+import { profilePopup, placePopup } from '../../pages/index.js'
+import { nameInput, jobInput, profileName, profileJob } from '../units/constants.js';
 
 export default class FormValidator {
-  constructor(data, form) {
+  constructor(data, form, openButton) {
     this._inputSelector = data.inputSelector;
     this._inactiveButtonClass = data.inactiveButtonClass;
     this._inputErrorClass = data.inputErrorClass;
@@ -9,6 +10,7 @@ export default class FormValidator {
     this._formElement = form;
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._submitButton = form.querySelector(data.submitButtonSelector);
+    this._openButton = document.querySelector(openButton);
   }
 
   _showInputError(inputElement, errorMessage) {
@@ -58,6 +60,23 @@ export default class FormValidator {
         this._validateInput(inputElement);
         this.toggleButtonState();
       });
+
+      this._openButton.addEventListener('click', () => {
+        if (this._openButton.classList.contains('profile__edit-button')) {
+          
+          nameInput.value = profileName.textContent
+          jobInput.value = profileJob.textContent
+
+          this.resetValidation()
+          this.toggleButtonState()
+          profilePopup.open()
+        }
+        if (this._openButton.classList.contains('profile__add-button')) {
+          this.resetValidation()
+          this.toggleButtonState()
+          placePopup.open()
+        }
+      })
     });
   }
 

@@ -1,14 +1,13 @@
 
-import Popup from "./Popup.js";
+import Popup from "./Popup";
 
 export default class PopupWithForm extends Popup{   //который наследуется от Popup 
-   constructor( {popupSelector, handleFormSubmit, buttonOpen} ) {   //кроме селектора попапа принимает в конструктор колбэк сабмита формы
+   constructor( {popupSelector, handleFormSubmit} ) {   //кроме селектора попапа принимает в конструктор колбэк сабмита формы
       super(popupSelector);
       this._inputList = this._popup.querySelectorAll('.form__input');
       this._buttonSubmit = this._popup.querySelector('.form__save-button')
       this._form = this._popup.querySelector('.form');
       this._handleFormSubmit = handleFormSubmit;
-      this._buttonOpen = document.querySelector(buttonOpen);
    }
 
    _getInputValues() {  //собирает данные всех полей формы.
@@ -22,11 +21,11 @@ export default class PopupWithForm extends Popup{   //который насле�
    setEventListeners() {   //Перезаписывает родительский метод
       //метод должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы
 
-      this._form.addEventListener('submit', () => {
+      this._form.addEventListener('submit', (evt) => {
+         
+         evt.preventDefault()
          this._handleFormSubmit(this._getInputValues())
       })
-
-      this._buttonOpen.addEventListener('click', super.open.bind(this))
 
       super.setEventListeners()
    }

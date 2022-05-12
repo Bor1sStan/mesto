@@ -55,39 +55,40 @@ function renderCard(cardData) {
 }
 
 //попап формы профиля s
-const profilePopup = new PopupWithForm({
+export const profilePopup = new PopupWithForm({
   popupSelector: "#popup-profile",
   handleFormSubmit: (data) => {
     //это колбэк сабмита формы
-    initialCardList.addItem(renderCard(data));
-    // profilePopup.close();
-  },
-  buttonOpen: ".profile__edit-button",
+    
+    profilePopup.close();
+  }
+  
 });
 profilePopup.setEventListeners();
 
 //попап формы места
-const placePopup = new PopupWithForm({
+export const placePopup = new PopupWithForm({
   popupSelector: "#popup-place",
   handleFormSubmit: (data) => {
     //это колбэк сабмита формы
     initialCardList.addItem(renderCard(data));
-    // placePopup.close();
+    placePopup.close();
   },
-  buttonOpen: ".profile__add-button",
 });
 placePopup.setEventListeners();
 
 //валидация попапа формы места
 const placeFormValidator = new FormValidator(
   parametersFormValidator,
-  placeForm
+  placeForm,
+  ".profile__add-button"
 );
 placeFormValidator.enableValidation(); //функция валидации формы места
 
 //валидация попапа формы профиля
 const profileFormValidator = new FormValidator(
   parametersFormValidator,
-  profileForm
+  profileForm,
+  ".profile__edit-button"
 );
 profileFormValidator.enableValidation(); //функция валидации формы профиля
