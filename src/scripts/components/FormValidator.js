@@ -64,14 +64,15 @@ export default class FormValidator {
       this._openButton.addEventListener('click', () => {
         if (this._openButton.classList.contains('profile__edit-button')) {
           
-          nameInput.value = profileName.textContent
-          jobInput.value = profileJob.textContent
+          profileName.textContent = nameInput.value
+          profileJob.textContent = jobInput.value
 
           this.resetValidation()
           this.toggleButtonState()
           profilePopup.open()
         }
         if (this._openButton.classList.contains('profile__add-button')) {
+          
           this.resetValidation()
           this.toggleButtonState()
           placePopup.open()
@@ -87,6 +88,10 @@ export default class FormValidator {
   }
 
   enableValidation() {
+
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault()
+    })
     this._setEventListeners();
   }
 

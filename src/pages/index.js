@@ -13,18 +13,18 @@ import {
   parametersFormValidator,
   placeForm,
   profileForm,
-  popupCardImage,
-  cardTemplate,
-  buttonEdit,
-  buttonAdd,
+  profileName,
+  nameInput,
+  profileJob,
+  jobInput
 } from "../scripts/units/constants";
 
 import { initialCards } from "../scripts/units/initialCards";
 
 //данные пользователя
 const profile = new UserInfo({
-  nameSelector: ".profile__name",
-  jobSelector: ".profile__job",
+  nameSelector: "#profile-name",
+  jobSelector: "#profile-job",
 });
 
 const initialCardList = new Section(
@@ -59,7 +59,11 @@ export const profilePopup = new PopupWithForm({
   popupSelector: "#popup-profile",
   handleFormSubmit: (data) => {
     //это колбэк сабмита формы, оюновление данных профиля
-        
+    
+    profile.setUserInfo(data)
+
+    profileName.textContent = nameInput.value
+    profileJob.textContent = jobInput.value
 
     profilePopup.close();
   }
