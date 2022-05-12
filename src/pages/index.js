@@ -58,8 +58,9 @@ function renderCard(cardData) {
 export const profilePopup = new PopupWithForm({
   popupSelector: "#popup-profile",
   handleFormSubmit: (data) => {
-    //это колбэк сабмита формы
-    
+    //это колбэк сабмита формы, оюновление данных профиля
+        
+
     profilePopup.close();
   }
   
@@ -70,7 +71,7 @@ profilePopup.setEventListeners();
 export const placePopup = new PopupWithForm({
   popupSelector: "#popup-place",
   handleFormSubmit: (data) => {
-    //это колбэк сабмита формы
+    //это колбэк сабмита формы, создание и добавление карточки
     initialCardList.addItem(renderCard(data));
     placePopup.close();
   },
