@@ -22,7 +22,6 @@ export default class PopupWithForm extends Popup{   //который насле�
       //метод должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы
 
       this._form.addEventListener('submit', () => {
-         
          this._handleFormSubmit(this._getInputValues())
       })
 

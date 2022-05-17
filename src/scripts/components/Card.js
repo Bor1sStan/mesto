@@ -50,13 +50,6 @@ export default class Card {
       })
    }
    
-   // _handleCardClick() {
-   //    this._cardImage.src = this._link;
-   //    this._cardImage.alt = this._name;
-   //    this._cardPlace.textContent = this._name;
-   //    super.open()
-   // }
-
    _handleLikeClick() {
       this._cardLikeButton.classList.toggle('elements__like-button_active')
    }

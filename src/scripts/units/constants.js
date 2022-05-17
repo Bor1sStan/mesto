@@ -3,8 +3,8 @@
 
 export const profileName = document.querySelector("#profile-name"); //переменная имени профиля
 export const profileJob = document.querySelector("#profile-job"); //переменная работы профиля
-export const nameInput = document.querySelector("#profile-name-input"); //переменная импута имени профиля
-export const jobInput = document.querySelector("#profile-job-input"); //переменная импута работы профиля
+export const nameInput = document.querySelector("#name-input"); //переменная импута имени профиля
+export const jobInput = document.querySelector("#job-input"); //переменная импута работы профиля
 export const profileForm = document.querySelector("#profileForm"); //переменная формы профиля
 export const placeForm = document.querySelector("#placeForm"); //переменная формы места
 

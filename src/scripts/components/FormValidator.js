@@ -1,5 +1,6 @@
 import { profilePopup, placePopup } from '../../pages/index.js'
-import { nameInput, jobInput, profileName, profileJob } from '../units/constants.js';
+import { profileName, profileJob, nameInput, jobInput } from '../units/constants.js'
+
 
 export default class FormValidator {
   constructor(data, form, openButton) {
@@ -64,11 +65,12 @@ export default class FormValidator {
       this._openButton.addEventListener('click', () => {
         if (this._openButton.classList.contains('profile__edit-button')) {
           
-          profileName.textContent = nameInput.value
-          profileJob.textContent = jobInput.value
-
           this.resetValidation()
           this.toggleButtonState()
+
+          nameInput.value = profileName.textContent
+          jobInput.value = profileJob.textContent
+
           profilePopup.open()
         }
         if (this._openButton.classList.contains('profile__add-button')) {
