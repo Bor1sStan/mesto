@@ -11,12 +11,14 @@ import UserInfo from "../scripts/components/UserInfo";
 
 import {
   parametersFormValidator,
-  placeForm,
-  profileForm,
   profileName,
-  nameInput,
   profileJob,
+  nameInput,
   jobInput,
+  addButton,
+  editButton,
+  profileForm,
+  placeForm
 } from "../scripts/units/constants";
 
 import { initialCards } from "../scripts/units/initialCards";
@@ -34,7 +36,7 @@ export const profile = new UserInfo({
 const initialCardList = new Section(
   {
     data: initialCards,
-    renderer: renderCard,
+    renderer: renderCard(cardData)        
   },
   ".elements"
 );
@@ -68,7 +70,7 @@ function renderCard(cardData) {
 export const profilePopup = new PopupWithForm({
   popupSelector: "#popup-profile",
   handleFormSubmit: (userData) => {
-    //это колбэк сабмита формы, оюновление данных профиля
+    //это колбэк сабмита формы, обновление данных профиля
 
     profile.setUserInfo(userData);
 
@@ -79,33 +81,37 @@ profilePopup.setEventListeners();
 
 //-------------------------- Popup Form Place
 
-//попап формы места
-export const placePopup = new PopupWithForm({
-  popupSelector: "#popup-place",
-  handleFormSubmit: (data) => {
-    //это колбэк сабмита формы, создание и добавление карточки
-    initialCardList.addItem(renderCard(data));
-    placePopup.close();
-  },
-});
-placePopup.setEventListeners();
+// //попап формы места
+// export const placePopup = new PopupWithForm({
+//   popupSelector: "#popup-place",
+//   handleFormSubmit: (data) => {
+//     //это колбэк сабмита формы, создание и добавление карточки
+//     initialCardList.addItem(renderCard(data));
+//     placePopup.close();
+//   }
+// });
+// placePopup.setEventListeners();
 
-//-------------------------- Form Validator Place
 
-//валидация попапа формы места
-const placeFormValidator = new FormValidator(
-  parametersFormValidator,
-  placeForm,
-  ".profile__add-button"
-);
-placeFormValidator.enableValidation(); //функция валидации формы места
 
-//-------------------------- Form Validator Profile
+//-------------------------- Form Validator 
 
-//валидация попапа формы профиля
-const profileFormValidator = new FormValidator(
-  parametersFormValidator,
-  profileForm,
-  ".profile__edit-button"
-);
-profileFormValidator.enableValidation(); //функция валидации формы профиля
+const formValidators = {}
+
+// Включение валидации
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formElement, config)
+// получаем данные из атрибута `name` у формы
+    const formName = formElement.getAttribute('name')
+
+   // вот тут в объект записываем под именем формы
+    formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+};
+
+enableValidation('#placeForm');
+
+enableValidation('#profileForm');
