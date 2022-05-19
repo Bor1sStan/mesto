@@ -18,7 +18,7 @@ import {
   addButton,
   editButton,
   profileForm,
-  placeForm
+  placeForm,
 } from "../scripts/units/constants";
 
 import { initialCards } from "../scripts/units/initialCards";
@@ -36,7 +36,7 @@ export const profile = new UserInfo({
 const initialCardList = new Section(
   {
     data: initialCards,
-    renderer: renderCard(cardData)        
+    renderer: renderCard,
   },
   ".elements"
 );
@@ -53,11 +53,11 @@ popupImage.setEventListeners();
 //функция подбора карточки
 function renderCard(cardData) {
   const card = new Card(
-    { name: cardData.name, link: cardData.link },
+    { place: cardData.place, link: cardData.link },
     "#card",
     () => {
       //функция открытия карточки попапа при клике
-      popupImage.open({ name: cardData.name, link: cardData.link });
+      popupImage.open({ place: cardData.place, link: cardData.link });
     }
   );
 
@@ -81,37 +81,77 @@ profilePopup.setEventListeners();
 
 //-------------------------- Popup Form Place
 
-// //попап формы места
-// export const placePopup = new PopupWithForm({
-//   popupSelector: "#popup-place",
-//   handleFormSubmit: (data) => {
-//     //это колбэк сабмита формы, создание и добавление карточки
-//     initialCardList.addItem(renderCard(data));
-//     placePopup.close();
-//   }
-// });
-// placePopup.setEventListeners();
+//попап формы места
+export const placePopup = new PopupWithForm({
+  popupSelector: "#popup-place",
+  handleFormSubmit: (data) => {
+    //это колбэк сабмита формы, создание и добавление карточки
+    initialCardList.addItem(data);
+    placePopup.close();
+  },
+});
+placePopup.setEventListeners();
+
+//-------------------------- Form Validator
+
+const placeFormValidator = new FormValidator(
+  parametersFormValidator,
+  placeForm
+);
+
+placeFormValidator.enableValidation(); //функция валидации формы места
+
+//-------------------------- Form Validator Profile
+
+//валидация попапа формы профиля
+
+const profileFormValidator = new FormValidator(
+  parametersFormValidator,
+
+  profileForm
+);
+
+profileFormValidator.enableValidation(); //функция валидации формы профиля
+
+editButton.addEventListener("click", () => {
+  const initialData = profile.getUserInfo()
+  
+  profilePopup.setInputValues(initialData);
+
+  profileFormValidator.toggleButtonState();
+  profileFormValidator.resetValidation();
+
+  profilePopup.open();
+});
+
+
+addButton.addEventListener("click", () => {
+  
+  placeFormValidator.toggleButtonState();
+  placeFormValidator.resetValidation();
+
+  placePopup.open();
+});
 
 
 
-//-------------------------- Form Validator 
 
-const formValidators = {}
+// const formValidators = {}
 
-// Включение валидации
-const enableValidation = (config) => {
-  const formList = Array.from(document.querySelectorAll(config.formSelector))
-  formList.forEach((formElement) => {
-    const validator = new FormValidator(formElement, config)
-// получаем данные из атрибута `name` у формы
-    const formName = formElement.getAttribute('name')
+// // Включение валидации
+// const enableValidation = (config) => {
+//   const formList = Array.from(document.querySelectorAll(config.formSelector))
+//   formList.forEach((formElement) => {
+//     const validator = new FormValidator(formElement, config)
+// // получаем данные из атрибута `name` у формы
+//     const formName = formElement.getAttribute('name')
 
-   // вот тут в объект записываем под именем формы
-    formValidators[formName] = validator;
-   validator.enableValidation();
-  });
-};
+//    // вот тут в объект записываем под именем формы
+//     formValidators[formName] = validator;
+//    validator.enableValidation();
+//   });
+// };
 
-enableValidation('#placeForm');
+// enableValidation('#placeForm');
 
-enableValidation('#profileForm');
+// enableValidation('#profileForm');

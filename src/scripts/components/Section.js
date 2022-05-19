@@ -10,12 +10,12 @@ export default class Section {  //Первым параметром констр
 
    renderItems() {
       this._initialArray.forEach( item => {
-         this._renderer(item)
+         this.addItem(item)
       })
    }
 
-   addItem(element) {
-      const card = this._renderer(element)
+   addItem(cardData) {
+      const card = this._renderer(cardData)
       this._container.prepend(card)
    }
 }

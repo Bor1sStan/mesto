@@ -2,8 +2,8 @@
 //Свяжите класс Card c попапом. Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick. Эта функция должна открывать попап с картинкой при клике на карточку
 
 export default class Card {
-   constructor( { name, link }, templateSelector, handleCardClick ) {
-      this._name = name;
+   constructor( { place, link }, templateSelector, handleCardClick ) {
+      this._place = place;
       this._link = link;
       this._templateSelector = templateSelector;
       this._handleCardClick = handleCardClick;
@@ -28,8 +28,8 @@ export default class Card {
       this._cardDeleteButton = this._element.querySelector('.elements__delete-button');
 
       this._cardImage.src = this._link;
-      this._cardImage.alt = this._name;
-      this._cardPlace.textContent = this._name;
+      this._cardImage.alt = this._place;
+      this._cardPlace.textContent = this._place;
       
       this._setEventListeners();
 
