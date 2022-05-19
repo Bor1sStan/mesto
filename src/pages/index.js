@@ -13,8 +13,6 @@ import {
   parametersFormValidator,
   profileName,
   profileJob,
-  nameInput,
-  jobInput,
   addButton,
   editButton,
   profileForm,
@@ -92,7 +90,28 @@ export const placePopup = new PopupWithForm({
 });
 placePopup.setEventListeners();
 
-//-------------------------- Form Validator
+//-------------------------- Form Validator Profile
+
+//валидация попапа формы профиля
+
+const profileFormValidator = new FormValidator(
+  parametersFormValidator,
+  profileForm
+);
+
+profileFormValidator.enableValidation(); //функция валидации формы профиля
+
+editButton.addEventListener("click", () => {
+  
+  profilePopup.setInputValues(profile.getUserInfo());
+
+  profileFormValidator.toggleButtonState();
+  profileFormValidator.resetValidation();
+
+  profilePopup.open();
+});
+
+//-------------------------- Form Validator Place
 
 const placeFormValidator = new FormValidator(
   parametersFormValidator,
@@ -101,30 +120,6 @@ const placeFormValidator = new FormValidator(
 
 placeFormValidator.enableValidation(); //функция валидации формы места
 
-//-------------------------- Form Validator Profile
-
-//валидация попапа формы профиля
-
-const profileFormValidator = new FormValidator(
-  parametersFormValidator,
-
-  profileForm
-);
-
-profileFormValidator.enableValidation(); //функция валидации формы профиля
-
-editButton.addEventListener("click", () => {
-  const initialData = profile.getUserInfo()
-  
-  profilePopup.setInputValues(initialData);
-
-  profileFormValidator.toggleButtonState();
-  profileFormValidator.resetValidation();
-
-  profilePopup.open();
-});
-
-
 addButton.addEventListener("click", () => {
   
   placeFormValidator.toggleButtonState();
@@ -132,26 +127,3 @@ addButton.addEventListener("click", () => {
 
   placePopup.open();
 });
-
-
-
-
-// const formValidators = {}
-
-// // Включение валидации
-// const enableValidation = (config) => {
-//   const formList = Array.from(document.querySelectorAll(config.formSelector))
-//   formList.forEach((formElement) => {
-//     const validator = new FormValidator(formElement, config)
-// // получаем данные из атрибута `name` у формы
-//     const formName = formElement.getAttribute('name')
-
-//    // вот тут в объект записываем под именем формы
-//     formValidators[formName] = validator;
-//    validator.enableValidation();
-//   });
-// };
-
-// enableValidation('#placeForm');
-
-// enableValidation('#profileForm');
