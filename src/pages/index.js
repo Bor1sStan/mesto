@@ -20,6 +20,7 @@ import {
 } from "../scripts/units/constants";
 
 import { initialCards } from "../scripts/units/initialCards";
+import Popup from "../scripts/components/Popup";
 
 //-------------------------- UserInfo
 
@@ -102,7 +103,6 @@ const profileFormValidator = new FormValidator(
 profileFormValidator.enableValidation(); //функция валидации формы профиля
 
 editButton.addEventListener("click", () => {
-  
   profilePopup.setInputValues(profile.getUserInfo());
 
   profileFormValidator.toggleButtonState();
@@ -121,9 +121,28 @@ const placeFormValidator = new FormValidator(
 placeFormValidator.enableValidation(); //функция валидации формы места
 
 addButton.addEventListener("click", () => {
-  
   placeFormValidator.toggleButtonState();
   placeFormValidator.resetValidation();
 
   placePopup.open();
 });
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const avatarPopup = new PopupWithForm({
+  popupSelector: "#popup-avatar",
+  handleFormSubmit: (userData) => {
+    //  тут надо вставить ссылку на аватар
+
+    avatarPopup.close();
+  },
+});
+avatarPopup.setEventListeners()
+
+
+
+const editAvatar = document.querySelector(".profile__avatar-edit-button");
+
+editAvatar.addEventListener("click", () => {
+  avatarPopup.open();
+})
