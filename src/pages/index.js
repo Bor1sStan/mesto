@@ -127,7 +127,7 @@ addButton.addEventListener("click", () => {
   placePopup.open();
 });
 
-//----------------------------------------------------------------------------------------------- RUN srv, RUN!!!
+//----------------------------------------------------------------------------------------------- RUN RUN RUN serv, RUN!!!
 
 const avatarPopup = new PopupWithForm({
   popupSelector: "#popup-avatar",
