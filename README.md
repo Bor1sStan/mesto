@@ -12,4 +12,4 @@
 
 **GitHub Pages**
 
-* [Ссылка на GitHub Pages](https://bor1sstan.github.io/mesto/index.html)
+* [Ссылка на GitHub Pages](https://bor1sstan.github.io/mesto/)
