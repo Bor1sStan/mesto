@@ -1,6 +1,7 @@
 // webpack.config.js
 const path = require("path"); // подключаем path к конфигу вебпак
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // подключите к проекту mini-css-extract-plugin
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -14,8 +15,11 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
     publicPath: "",
+
     //замена плагина CleanWebpackPlugin
-    clean: true,
+
+    // clean: true,
+
   },
   module: {
     rules: [
@@ -57,6 +61,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html", // путь к файлу index.html
     }),
+
+    new CleanWebpackPlugin(),
+    
     new MiniCssExtractPlugin(), // подключение плагина для объединения файлов
     new CopyPlugin({
       patterns: [
