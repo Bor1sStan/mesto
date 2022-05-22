@@ -3,6 +3,8 @@
    height: 120px;
    border-radius: 50%;
    margin: 3px 0 0 0;
+   background-image: url(../../../images/custo.svg);
+   z-index: 1;
 }
 
 @media (max-width: 570px) {
