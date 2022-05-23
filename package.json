@@ -18,9 +18,11 @@
   "bugs": {
     "url": "https://github.com/Bor1sStan/mesto/issues"
   },
-  "homepage": "https://github.com/Bor1sStan/mesto#readme",
+  "homepage": "https://bor1sstan.github.io/mesto/",
   "dependencies": {
-    "core-js": "^3.22.6"
+    "core-js": "^3.22.6",
+    "git": "^0.1.5",
+    "git-rev-sync": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.18.0",
