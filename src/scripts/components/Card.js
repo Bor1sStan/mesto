@@ -1,61 +1,83 @@
-
-//Свяжите класс Card c попапом. Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick. Эта функция должна открывать попап с картинкой при клике на карточку
-
 export default class Card {
-   constructor( { place, link }, templateSelector, handleCardClick ) {
-      this._place = place;
-      this._link = link;
-      this._templateSelector = templateSelector;
-      this._handleCardClick = handleCardClick;
+   constructor(cardData, currentUser, templateSelector, handleClickCard, handleDeleteCard, handleLikeCard) {
+     this._name = cardData.name
+     this._link = cardData.link
+     this._templateSelector = templateSelector
+     this._handleClickCard = handleClickCard
+     this._handleDeleteCard = handleDeleteCard
+     this._handleLikeCard = handleLikeCard
+     this._currentUser = currentUser
+     this._cardOwner = cardData.owner._id
+     this._id = cardData._id
+     this.likes = cardData.likes
    }
-
+ 
+   checkLike() {
+     return this.likes.some(item => item._id === this._currentUser)
+   }
+ 
+   _setLikeState() {
+     if (this.checkLike()) {
+       this.setLike()
+     } else {
+       this.removeLike()
+     }
+   }
+ 
+   setLike() {
+     this._cardLike.classList.add('elements__like-button_active');
+     this._cardLikeCounter.textContent = this.likes.length;
+   }
+ 
+   removeLike() {
+     this._cardLike.classList.remove('elements__like-button_active');
+     this._cardLikeCounter.textContent = this.likes.length;
+   }
+ 
    _getTemplate() {
-      const cardElement = document
-         .querySelector(this._templateSelector)
-         .content
-         .querySelector('.elements__element')
-         .cloneNode(true);
-
-         return cardElement;
+     const cardTemplate = document
+       .querySelector(this._templateSelector)
+       .content.querySelector('.elements__element')
+       .cloneNode(true);
+     return cardTemplate
    }
-
+ 
    generateCard() {
-      this._element = this._getTemplate();
-      
-      this._cardImage = this._element.querySelector('.elements__image');
-      this._cardPlace = this._element.querySelector('.elements__place');
-      this._cardLikeButton = this._element.querySelector('.elements__like-button');
-      this._cardDeleteButton = this._element.querySelector('.elements__delete-button');
-
-      this._cardImage.src = this._link;
-      this._cardImage.alt = this._place;
-      this._cardPlace.textContent = this._place;
-      
-      this._setEventListeners();
-
-      return this._element
+     this._element = this._getTemplate();
+     this._cardImage = this._element.querySelector('.elements__image');
+     this._cardCaption = this._element.querySelector('.elements__place');
+     this._cardLike = this._element.querySelector('.elements__like-button');
+     this._cardLikeCounter = this._element.querySelector('.elements__like-meter');
+     this._cardDelete = this._element.querySelector('.elements__delete-button');
+     this._cardImage.src = this._link;
+     this._cardImage.alt = this._name;
+     this._cardCaption.textContent = this._name;
+ 
+     if (this._cardOwner !== this._currentUser) {
+       this._cardDelete.remove()
+     }
+ 
+     this._setLikeState();
+     this._setEventListeners();
+ 
+     return this._element
    }
-   
+ 
+   deleteCard() {
+     this._element.remove()
+   }
+ 
    _setEventListeners() {
-      this._cardLikeButton.addEventListener('click', () => {
-         this._handleLikeClick();
-      })
-      
-      this._cardDeleteButton.addEventListener('click', () => {
-         this._handleDeleteClick();
-      })
-
-      this._cardImage.addEventListener('click', () => {
-         this._handleCardClick();
-      })
+     this._cardLike.addEventListener('click', () => {
+       this._handleLikeCard(this);
+     })
+ 
+     this._cardDelete.addEventListener('click', () => {
+       this._handleDeleteCard(this);
+     })
+ 
+     this._cardImage.addEventListener('click', () => {
+       this._handleClickCard(this._name, this._link)
+     });
    }
-   
-   _handleLikeClick() {
-      this._cardLikeButton.classList.toggle('elements__like-button_active')
-   }
-
-   _handleDeleteClick() {
-      this._element.remove();
-      this._element = null;
-   }
-}
+ }

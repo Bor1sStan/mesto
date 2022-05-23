@@ -9,11 +9,11 @@ export default class PopupWithImage extends Popup {
     this._popupImage = this._popup.querySelector(".popup__image");
   }
 
-  open({ place, link }) {
+  open({ name, link }) {
     //перезаписывает родительский метод open() Popup, который вставляет в попап картинку с подписью в картинку
-    this._popupName.textContent = place;
+    this._popupName.textContent = name;
     this._popupImage.src = link;
-    this._popupImage.alt = place;
+    this._popupImage.alt = name;
     super.open();
   }
 }

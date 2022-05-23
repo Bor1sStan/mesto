@@ -13,9 +13,10 @@ export const placeForm = document.querySelector("#placeForm"); //перемен�
 
 //переменная для параметров функции FormValidator
 export const parametersFormValidator = {
+  formSelector: ".form",
   inputSelector: ".form__input",
+  submitButtonSelector: ".form__save-button",
   inactiveButtonClass: "form__save-button_disabled",
   inputErrorClass: "form__input_error-type",
   errorClass: "form__error_visible",
-  submitButtonSelector: ".form__save-button"
 };

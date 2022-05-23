@@ -11,6 +11,7 @@
     </header>
 
     <main>
+
       <!--  секция редактирования профиля -->
 
       <section class="profile">
@@ -39,7 +40,7 @@
                 type="button"
               ></button>
             </div>
-            <p class="profile__job" id="profile-job">Исследователь океана</p>
+            <p class="profile__job" id="profile-about">Исследователь океана</p>
           </div>
         </div>
 
@@ -89,7 +90,7 @@
             <input
               required
               name="name"
-              id="name-input"
+              id="profile-name-input"
               type="text"
               class="form__input"
               placeholder="Имя"
@@ -97,14 +98,14 @@
               maxlength="40"
               value="Жак-Ив Кусто"
             />
-            <span class="form__error name-input-error"></span>
+            <span class="form__error profile-name-input-error"></span>
           </label>
 
           <label class="form__field">
             <input
               required
-              name="job"
-              id="job-input"
+              name="about"
+              id="profile-about-input"
               type="text"
               class="form__input"
               placeholder="Профессиональная деятельность"
@@ -112,7 +113,7 @@
               maxlength="200"
               value="Исследователь океана"
             />
-            <span class="form__error job-input-error"></span>
+            <span class="form__error profile-about-input-error"></span>
           </label>
 
           <button
@@ -130,7 +131,7 @@
 
     <article class="popup" id="popup-place">
       <div class="popup__container">
-        <form class="form" name="place-form" id="placeForm" novalidate>
+        <form class="form" name="place-form" id="place-form" novalidate>
           <button
             class="popup__close-button"
             id="close-button-place"
@@ -141,7 +142,7 @@
           <label class="form__field" for="place">
             <input
               required
-              name="place"
+              name="name"
               id="place-input"
               type="text"
               class="form__input"
@@ -205,11 +206,11 @@
       </div>
     </article>
 
-    <!--  PopUp с обновление аватара  -->
+    <!--  PopUp с обновлением аватара  -->
 
     <article class="popup" id="popup-avatar">
       <div class="popup__container">
-        <form class="form" name="avatar-form" id="avatarForm" novalidate>
+        <form class="form" name="avatar-form" id="avatar-form" novalidate>
           <button
             class="popup__close-button"
             id="close-button-place"

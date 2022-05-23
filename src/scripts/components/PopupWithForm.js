@@ -1,44 +1,45 @@
+import Popup from "./Popup.js";
 
-import Popup from "./Popup";
+export default class PopupWithForm extends Popup {
+  constructor({ popupSelector, submitCallback }) {
+    super(popupSelector);
+    this._inputList = this._popup.querySelectorAll('.form__input');
+    this._submitButton = this._popup.querySelector('.form__save-button');
+    this._form = this._popup.querySelector('.form');
+    this._submitCallback = submitCallback;
+  }
 
-export default class PopupWithForm extends Popup{   //который наследуется от Popup 
-   constructor( {popupSelector, handleFormSubmit} ) {   //кроме селектора попапа принимает в конструктор колбэк сабмита формы
-      super(popupSelector);
-      this._inputList = this._popup.querySelectorAll('.form__input');
-      this._buttonSubmit = this._popup.querySelector('.form__save-button')
-      this._form = this._popup.querySelector('.form');
-      this._handleFormSubmit = handleFormSubmit;
-   }
+  setPending() {
+    this._submitButton.textContent = 'Сохранение...'
+  }
 
-   _getInputValues() {  //собирает данные всех полей формы.
-      this._formValues = {};
-      this._inputList.forEach((input) => {
-         this._formValues[input.name] = input.value
-      })
-      return this._formValues;
-   }
-   
-   setInputValues(data) {
-      this._inputList.forEach((input) => {
-         // тут вставляем в `value` инпута данные из объекта по атрибуту `name` этого инпута
-         input.value = data[input.name]
-      })
-   }
+  removePending(text) {
+    this._submitButton.textContent = text
+  }
 
-   setEventListeners() {   //Перезаписывает родительский метод
-      //метод должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы
+  _getInputValues() {
+    this._inputValues = {};
+    this._inputList.forEach((input) => {
+      this._inputValues[input.name] = input.value;
+    });
+    return this._inputValues;
+  }
 
-      this._form.addEventListener('submit', () => {
-         this._handleFormSubmit(this._getInputValues())
-      })
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      input.value = data[input.name]
+    })
+  }
+  
+  setEventListeners() {
+    this._form.addEventListener('submit', () => {
+      this._submitCallback(this._getInputValues());
+    })
+    super.setEventListeners();
+  }
 
-      super.setEventListeners()
-   }
-
-   close() {   //Перезаписывает родительский метод
-      //при закрытии попапа форма должна ещё и сбрасываться
-
-      super.close()
-      this._form.reset()
-   }
+  close() {
+    super.close();
+    this._form.reset();
+  }
 }

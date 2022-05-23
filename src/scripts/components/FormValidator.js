@@ -1,12 +1,13 @@
 export default class FormValidator {
   constructor(data, form) {
+    this._formSelector = data.formSelector;
     this._inputSelector = data.inputSelector;
     this._inactiveButtonClass = data.inactiveButtonClass;
     this._inputErrorClass = data.inputErrorClass;
     this._errorClass = data.errorClass;
-    this._formElement = form;
+    this._formElement = document.querySelector(form);
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    this._submitButton = form.querySelector(data.submitButtonSelector);
+    this._submitButton = data.submitButtonSelector;
   }
 
   _showInputError(inputElement, errorMessage) {
@@ -66,10 +67,7 @@ export default class FormValidator {
   }
 
   enableValidation() {
-
-    this._formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault()
-    })
+     //здесь раньше был prevent default при сабмите
     this._setEventListeners();
   }
 

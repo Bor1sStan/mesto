@@ -1,24 +1,30 @@
-
-
-export default class UserInfo {  //Класс UserInfo отвечает за управление отображением информации о пользователе на странице.
-   constructor( {nameSelector, jobSelector} ) {
-      //Принимает в конструктор объект с селекторами двух элементов: элемента имени пользователя и элемента информации о себе.
-      this._name = document.querySelector(nameSelector);
-      this._job = document.querySelector(jobSelector);
+export default class UserInfo {
+   constructor({ nameSelector, aboutSelector, avatarSelector, api }) {
+     this._name = document.querySelector(nameSelector)
+     this._nameInput = document.querySelector(`${nameSelector}-input`)
+     this._about = document.querySelector(aboutSelector)
+     this._aboutInput = document.querySelector(`${aboutSelector}-input`)
+     this._avatar = document.querySelector(avatarSelector)
+     this._api = api
    }
-
+ 
    getUserInfo() {
-      //Содержит публичный метод getUserInfo, который возвращает объект с данными пользователя. Этот метод пригодится когда данные пользователя нужно будет подставить в форму при открытии.
-      return {
-         name: this._name.textContent,
-         job: this._job.textContent
-      }
+     return {
+       name: this._nameInput.value,
+       about: this._aboutInput.value,
+       avatar: this._avatar.src
+     }
+   }
+ 
+   setAvatar(link) {
+     this._avatar.src = link.avatar
+   }
+ 
+   setUserInfo({ name, about }) {
+     this._name.textContent = name;
+     this._nameInput.textContent = name;
+     this._about.textContent = about;
+     this._aboutInput.textContent = about;
    }
 
-   setUserInfo( {name, job} ) {
-      //Содержит публичный метод setUserInfo, который принимает новые данные пользователя и добавляет их на страницу.
-      this._name.textContent = name;
-      this._job.textContent = job;
-   }
-   
 }
