@@ -9,12 +9,12 @@ export const editButton = document.querySelector("#edit-button"); //переме
 export const avatarButton = document.querySelector(".profile__avatar-edit-button"); //переменная кнопки открытия попапа аватара
 
 export const profileForm = document.querySelector("#profileForm"); //переменная формы профиля
-export const placeForm = document.querySelector("#placeForm"); //переменная формы места
+export const placeForm = document.querySelector("#place-form"); //переменная формы места
+export const avatarForm = document.querySelector("#avatar-form"); //переменная формы аватара
 
 
 //переменная для параметров функции FormValidator
 export const parametersFormValidator = {
-  formSelector: ".form",
   inputSelector: ".form__input",
   submitButtonSelector: ".form__save-button",
   inactiveButtonClass: "form__save-button_disabled",

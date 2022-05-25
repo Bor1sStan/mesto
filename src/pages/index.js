@@ -18,9 +18,10 @@ import {
   profileJob,
   addButton,
   editButton,
+  avatarButton,
   profileForm,
   placeForm,
-  avatarButton
+  avatarForm
 } from "../scripts/units/constants";
 
 
@@ -98,34 +99,6 @@ const api = new Api ({
   }
 });
 
-//-------------------------- Popup Form Profile
-
-const profilePopup = new PopupWithForm({
-  popupSelector: "#popup-profile",
-  submitCallback: (userData) => {
-    profilePopup.setPending();
-    api
-      .changeUserInfo(userData)
-      .then((userData) => {
-        profile.setUserInfo(userData);
-        profilePopup.close();
-      })
-      .catch((err) => console.log(err))
-      .finally(() => profilePopup.removePending("Сохранить"));
-  },
-});
-profilePopup.setEventListeners();
-
-editButton.addEventListener("click", (data) => {
-  api
-    .getUserInfo(data)
-    .then((data) => {
-      profilePopup.setInputValues(data)
-    })
-
-  profilePopup.open();
-});
-
 //-------------------------- UserInfo
 
 //данные пользователя
@@ -167,7 +140,7 @@ function createCard(cardData, currentUser) {
           .then(() => card.removeLike());
       }
     }
-  );
+  )
   return card.generateCard();
 }
 
@@ -189,6 +162,35 @@ const deletePopup = new PopupWithConfirmation({
   },
 });
 deletePopup.setEventListeners();
+
+//-------------------------- Popup Form Profile
+
+const profilePopup = new PopupWithForm({
+  popupSelector: "#popup-profile",
+  submitCallback: (userData) => {
+    profilePopup.setPending();
+    api
+      .changeUserInfo(userData)
+      .then((userData) => {
+        profile.setUserInfo(userData);
+        profilePopup.close();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => profilePopup.removePending("Сохранить"));
+  },
+});
+profilePopup.setEventListeners();
+
+editButton.addEventListener("click", (data) => {
+  api
+    .getUserInfo(data)
+    .then((data) => {
+      profilePopup.setInputValues(data)
+    })
+    profileFormValidator.resetValidation()
+    profileFormValidator.toggleButtonState()
+  profilePopup.open();
+});
 
 // //-------------------------- Popup Avatar
 
@@ -212,7 +214,9 @@ avatarButton.addEventListener("click", (link) => {
   profile.getInfo(() => {
     api.getUserInfo
   })
-  
+
+  avatarFormValidator.resetValidation()
+  avatarFormValidator.toggleButtonState()
   avatarPopup.open();
 });
 
@@ -237,17 +241,22 @@ const popupPlace = new PopupWithForm({
 });
 popupPlace.setEventListeners();
 addButton.addEventListener("click", () => {
+  placeFormValidator.resetValidation()
+  placeFormValidator.toggleButtonState()
   popupPlace.open();
 });
 
-// const placeFormValidator = new FormValidator(parametersFormValidator, '#place-form');
-// placeFormValidator.enableValidation()
+// //-------------------------- Form Validators
 
-// const profileFormValidator = new FormValidator(parametersFormValidator, '#profile-form')
-// profileFormValidator.enableValidation()
+const placeFormValidator = new FormValidator(parametersFormValidator, "#place-form");
+placeFormValidator.enableValidation()
 
-// const avatarValidator = new FormValidator(parametersFormValidator, '#avatar-form')
-// avatarValidator.enableValidation()
+const profileFormValidator = new FormValidator(parametersFormValidator, "#profileForm");
+profileFormValidator.enableValidation()
+
+const avatarFormValidator = new FormValidator(parametersFormValidator, "#avatar-form");
+avatarFormValidator.enableValidation()
+
 
 Promise.all([api.getUserInfo(), api.getCardList()])
   .then((promiseResponseArray) => {
