@@ -13,81 +13,24 @@ import UserInfo from "../scripts/components/UserInfo";
 import Api from "../scripts/components/Api";
 
 import {
-  parametersFormValidator,
-  profileName,
-  profileJob,
   addButton,
   editButton,
   avatarButton,
-  profileForm,
-  placeForm,
-  avatarForm
+  parametersFormValidator
 } from "../scripts/units/constants";
 
 
 //     -------------------------------------------
 
-// [
-//   {
-//     "likes": [],
-//     "_id": "5d1f0611d321eb4bdcd707dd",
-//     "name": "Байкал",
-//     "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-//     "owner": {
-//       "name": "Jacques Cousteau",
-//       "about": "Sailor, researcher",
-//       "avatar": "https://pictures.s3.yandex.net/frontend-developer/ava.jpg",
-//       "_id": "ef5f7423f7f5e22bef4ad607",
-//       "cohort": "local"
-//     },
-//     "createdAt": "2019-07-05T08:10:57.741Z"
-//   },
-//   {
-//     "likes": [],
-//     "_id": "5d1f064ed321eb4bdcd707de",
-//     "name": "Архыз",
-//     "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-//     "owner": {
-//       "name": "Jacques Cousteau",
-//       "about": "Sailor, researcher",
-//       "avatar": "https://pictures.s3.yandex.net/frontend-developer/ava.jpg",
-//       "_id": "ef5f7423f7f5e22bef4ad607",
-//       "cohort": "local"
-//     },
-//     "createdAt": "2019-07-05T08:11:58.324Z"
-//   }
-// ]
 
-//   //   мой личный токен авторизации  authorization: "5ac24e56-6009-4399-abe6-aadfc281115b"
+//     мой личный токен авторизации  authorization: "5ac24e56-6009-4399-abe6-aadfc281115b"
 
-//   //   номер когорты = "cohort-41"
+//     номер когорты = "cohort-41"
 
-//   //   мой id = "a97c5a8fdf6401cef9281092"
+//     мой id = "a97c5a8fdf6401cef9281092"
 
-// GET https://mesto.nomoreparties.co/v1/cohortId/cards
 
 //     -------------------------------------------
-
-fetch("https://mesto.nomoreparties.co/v1/cohort-41/users/me", {
-  headers: {
-    authorization: "5ac24e56-6009-4399-abe6-aadfc281115b",
-  },
-})
-  .then((res) => res.json())
-  .then((result) => {
-    console.log(result);
-});
-
-fetch("https://mesto.nomoreparties.co/v1/cohort-41/cards", {
-  method: "GET",
-  headers: {
-    authorization: "5ac24e56-6009-4399-abe6-aadfc281115b",
-  },
-})
-  .then((res) => res.json())
-  .then((result) => {
-    console.log(result);
-});
 
 //-------------------------- Api
 
@@ -126,12 +69,9 @@ function createCard(cardData, currentUser) {
     (card) => deletePopup.open(card),
     (card) => {
       if (!card.checkLike()) {
-        // Запрос на лайк
         api
           .likeCard(cardData._id)
-          // Обновление массива с лайками
           .then((likeArrayResponse) => (card.likes = likeArrayResponse.likes))
-          // Отрисовка лайка и счётчика
           .then(() => card.setLike());
       } else {
         api
@@ -192,7 +132,7 @@ editButton.addEventListener("click", (data) => {
   profilePopup.open();
 });
 
-// //-------------------------- Popup Avatar
+// //-------------------------- Popup Form Avatar
 
 const avatarPopup = new PopupWithForm({
   popupSelector: "#popup-avatar",
@@ -210,11 +150,8 @@ const avatarPopup = new PopupWithForm({
   },
 });
 avatarPopup.setEventListeners();
-avatarButton.addEventListener("click", (link) => {
-  profile.getInfo(() => {
-    api.getUserInfo
-  })
-
+avatarButton.addEventListener("click", () => {
+  
   avatarFormValidator.resetValidation()
   avatarFormValidator.toggleButtonState()
   avatarPopup.open();
@@ -251,12 +188,13 @@ addButton.addEventListener("click", () => {
 const placeFormValidator = new FormValidator(parametersFormValidator, "#place-form");
 placeFormValidator.enableValidation()
 
-const profileFormValidator = new FormValidator(parametersFormValidator, "#profileForm");
+const profileFormValidator = new FormValidator(parametersFormValidator, "#profile-form");
 profileFormValidator.enableValidation()
 
 const avatarFormValidator = new FormValidator(parametersFormValidator, "#avatar-form");
 avatarFormValidator.enableValidation()
 
+// //-------------------------- Promise.all
 
 Promise.all([api.getUserInfo(), api.getCardList()])
   .then((promiseResponseArray) => {
