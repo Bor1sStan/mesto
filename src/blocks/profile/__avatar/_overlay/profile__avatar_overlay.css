@@ -9,10 +9,10 @@
   margin: 0px;
   position: relative;
   bottom: 124px;
-  z-index: 2;
+  z-index: 1;
 }
 
 .profile__avatar_overlay:hover {
   opacity: 0.8;
-  z-index: 2;
+  z-index: 1;
 }

@@ -122,7 +122,6 @@ editButton.addEventListener("click", (data) => {
     .then((data) => {
       profilePopup.setInputValues(data)
     })
-  // profilePopup.setInputValues(profile);
 
   profilePopup.open();
 });
@@ -142,11 +141,6 @@ const profile = new UserInfo({
 const cardSection = new Section((cardItem) => {
   cardSection.addItem(createCard(cardItem, "a97c5a8fdf6401cef9281092"));
 }, ".elements");
-
-//-------------------------- Popup Image
-
-const photoPopup = new PopupWithImage("#popup-card");
-photoPopup.setEventListeners();
 
 // //-------------------------- Card
 
@@ -176,6 +170,11 @@ function createCard(cardData, currentUser) {
   );
   return card.generateCard();
 }
+
+//-------------------------- Popup Image
+
+const photoPopup = new PopupWithImage("#popup-card");
+photoPopup.setEventListeners();
 
 // //-------------------------- Popup Delete
 
