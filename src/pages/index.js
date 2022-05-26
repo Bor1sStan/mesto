@@ -123,7 +123,7 @@ profilePopup.setEventListeners();
 
 editButton.addEventListener("click", (data) => {
   api
-    .getUserInfo(data)
+    .getUserInfo()
     .then((data) => {
       profilePopup.setInputValues(data)
     })
@@ -150,10 +150,15 @@ const avatarPopup = new PopupWithForm({
   },
 });
 avatarPopup.setEventListeners();
+
 avatarButton.addEventListener("click", () => {
-  
+  api.getUserInfo()
+     .then((data) => {
+       avatarPopup.setInputValues(data)
+     })
   avatarFormValidator.resetValidation()
   avatarFormValidator.toggleButtonState()
+  
   avatarPopup.open();
 });
 
@@ -199,10 +204,8 @@ avatarFormValidator.enableValidation()
 Promise.all([api.getUserInfo(), api.getCardList()])
   .then((promiseResponseArray) => {
     profile.setAvatar(promiseResponseArray[0]);
-    console.log(promiseResponseArray[0]);
-
+    
     profile.setUserInfo(promiseResponseArray[0]);
-    console.log(promiseResponseArray[0]);
 
     cardSection.renderItems(promiseResponseArray[1].reverse());
   })
