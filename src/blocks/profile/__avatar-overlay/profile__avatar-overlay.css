@@ -7,8 +7,8 @@
   opacity: 0;
   padding: 0px;
   margin: 0px;
+  bottom: 123px;
   position: relative;
-  bottom: 124px;
   z-index: 1;
 }
 
