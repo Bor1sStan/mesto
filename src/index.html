@@ -20,7 +20,7 @@
             <img
               class="profile__avatar"
               id="avatar"
-              name="name"
+              name="avatar"
               src="<%=require('./images/custo.svg')%>"
               alt="Заглушка"
             />
@@ -35,14 +35,16 @@
 
           <div class="profile__info">
             <div class="profile__high-row">
-              <h1 class="profile__name" id="name">Жак-Ив Кусто</h1>
+              <h1 class="profile__name" id="name"
+              name="name"></h1>
               <button
                 class="profile__edit-button"
                 id="edit-button"
                 type="button"
               ></button>
             </div>
-            <p class="profile__job" id="about">Исследователь океана</p>
+            <p class="profile__job" id="about"
+            name="about"></p>
           </div>
         </div>
 
@@ -58,8 +60,9 @@
       <section class="elements">
         <template id="card">
           <article class="elements__element">
-            <img src="#" alt="Фото карточки" class="elements__image" />
             <button class="elements__delete-button" type="button"></button>
+            <img src="#" alt="Фото карточки" class="elements__image" />
+            
             <div class="elements__row">
               <h2 class="elements__place"></h2>
               <div class="elements__like-container">
@@ -67,6 +70,8 @@
                 <p class="elements__like-meter">0</p>
               </div>
             </div>
+
+            
           </article>
         </template>
       </section>
@@ -80,7 +85,9 @@
 
     <article class="popup" id="popup-profile">
       <div class="popup__container">
-        <form class="form" name="profileForm" id="profile-form" novalidate>
+        <form class="form" name="profileForm"
+        action="#" method="post" id="profile-form" 
+        enctype="text/plain" novalidate>
           <button
             class="popup__close-button"
             id="close-button-profile"
@@ -131,7 +138,9 @@
 
     <article class="popup" id="popup-place">
       <div class="popup__container">
-        <form class="form" name="placeForm" id="place-form" novalidate>
+        <form class="form" name="placeForm" id="place-form"
+        action="#" method="post" 
+        novalidate>
           <button
             class="popup__close-button"
             id="close-button-place"
@@ -210,7 +219,8 @@
 
     <article class="popup" id="popup-avatar">
       <div class="popup__container">
-        <form class="form" name="avatar-form" id="avatar-form" novalidate>
+        <form class="form" name="avatar-form" id="avatar-form" 
+        method = "POST" novalidate>
           <button
             class="popup__close-button"
             id="close-button-avatar"

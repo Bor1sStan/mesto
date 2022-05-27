@@ -5,6 +5,7 @@
    margin: 0;
    object-fit: cover;
    z-index: 1;
+   position: relative;
 }
 
 @media (max-width: 570px) {
