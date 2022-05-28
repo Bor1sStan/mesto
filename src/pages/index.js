@@ -22,6 +22,8 @@ import {
 
 let userID = "";  // переменная под айди пользователя
 
+let cardOwnerId = "";  // переменная под айди пользователя карточки
+
 //     -------------------------------------------
 
 //     мой личный токен авторизации  authorization: "5ac24e56-6009-4399-abe6-aadfc281115b"
@@ -169,7 +171,7 @@ const popupPlace = new PopupWithForm({
       .addCard(cardData)
       .then((responseWithCard) => {
         cardSection.addItem(
-          createCard(responseWithCard, userID)
+          createCard(responseWithCard, cardOwnerId)
         );
         popupPlace.close();
       })
@@ -208,6 +210,9 @@ avatarFormValidator.enableValidation();
 
 Promise.all([api.getUserInfo(), api.getCardList()])
   .then((promiseResponseArray) => {
+
+    cardOwnerId = promiseResponseArray[0]._id;
+
     profile.setAvatar(promiseResponseArray[0]);
 
     profile.setUserInfo(promiseResponseArray[0]);
