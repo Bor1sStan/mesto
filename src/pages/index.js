@@ -18,11 +18,8 @@ import {
   avatarButton,
   parametersFormValidator,
 } from "../scripts/units/constants";
-// import { find } from "core-js/core/array";
 
 let userID = "";  // переменная под айди пользователя
-
-let cardOwnerId = "";  // переменная под айди пользователя карточки
 
 //     -------------------------------------------
 
@@ -41,8 +38,9 @@ const api = new Api({
   url: "https://mesto.nomoreparties.co/v1/cohort-41/",
   headers: {
     authorization: "5ac24e56-6009-4399-abe6-aadfc281115b",
+    "Content-Type": "application/json",
   },
-});
+}); 
 
 //-------------------------- UserInfo
 
@@ -50,8 +48,7 @@ const api = new Api({
 const profile = new UserInfo({
   nameSelector: "#name",
   aboutSelector: "#about",
-  avatarSelector: "#avatar",
-  id: "a97c5a8fdf6401cef9281092",
+  avatarSelector: "#avatar"
 });
 
 //-------------------------- Section
@@ -87,7 +84,7 @@ function createCard(cardData, currentUser) {
   return card.generateCard();
 }
 
-//-------------------------- Popup Image
+// //------------------------- Popup Image
 
 const photoPopup = new PopupWithImage("#popup-card");
 photoPopup.setEventListeners();
@@ -106,7 +103,7 @@ const deletePopup = new PopupWithConfirmation({
 });
 deletePopup.setEventListeners();
 
-//-------------------------- Popup Form Profile
+// //------------------------- Popup Form Profile
 
 const profilePopup = new PopupWithForm({
   popupSelector: "#popup-profile",
@@ -171,7 +168,7 @@ const popupPlace = new PopupWithForm({
       .addCard(cardData)
       .then((responseWithCard) => {
         cardSection.addItem(
-          createCard(responseWithCard, cardOwnerId)
+          createCard(responseWithCard, userID)
         );
         popupPlace.close();
       })
@@ -210,8 +207,6 @@ avatarFormValidator.enableValidation();
 
 Promise.all([api.getUserInfo(), api.getCardList()])
   .then((promiseResponseArray) => {
-
-    cardOwnerId = promiseResponseArray[0]._id;
 
     profile.setAvatar(promiseResponseArray[0]);
 

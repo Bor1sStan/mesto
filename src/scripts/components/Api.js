@@ -23,10 +23,7 @@ export default class Api {
   addCard(cardData) {
     return fetch(`${this._url}cards`, {
       method: "POST",
-      headers: {
-        authorization: "5ac24e56-6009-4399-abe6-aadfc281115b",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify(cardData),
     }).then(this._checkErorr);
   }
@@ -51,10 +48,7 @@ export default class Api {
   changeUserInfo(userData) {
     return fetch(`${this._url}users/me`, {
       method: "PATCH",
-      headers: {
-        authorization: "5ac24e56-6009-4399-abe6-aadfc281115b",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify(userData),
     }).then(this._checkErorr);
   }
@@ -63,10 +57,7 @@ export default class Api {
   changeAvatar(avatar) {
     return fetch(`${this._url}users/me/avatar`, {
       method: "PATCH",
-      headers: {
-        authorization: "5ac24e56-6009-4399-abe6-aadfc281115b",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify(avatar),
     }).then(this._checkErorr);
   }
