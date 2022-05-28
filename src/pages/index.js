@@ -18,6 +18,9 @@ import {
   avatarButton,
   parametersFormValidator,
 } from "../scripts/units/constants";
+// import { find } from "core-js/core/array";
+
+let userID = "";  // переменная под айди пользователя
 
 //     -------------------------------------------
 
@@ -46,82 +49,13 @@ const profile = new UserInfo({
   nameSelector: "#name",
   aboutSelector: "#about",
   avatarSelector: "#avatar",
+  id: "a97c5a8fdf6401cef9281092",
 });
-
-const userId = profile.getInfo().id; // переменная для id
-
-// const userInfo = api.getUserInfo()
-//                     .then((res) => profile.getInfo( {name: res.name, about: res.about, avatar: res.avatar, id: res.id}))
-//                     .catch((err) => console.log(err));
-// console.log(userInfo)
-
-
-
-
-
-
-
-
-Promise.all([api.getUserInfo(), api.getCardList()])
-  .then((promiseResponseArray) => {
-    profile.setAvatar(promiseResponseArray[0]);
-
-    profile.setUserInfo(promiseResponseArray[0]);
-
-    cardSection.renderItems(promiseResponseArray[1].reverse());
-    console.log(promiseResponseArray[0])
-  })
-  .catch((err) => console.log(err));
-  
-
-// const name = profile.getInfo()
-// console.log(profile.getInfo())
-
-// {name: res.name, about: res.about, avatar: res.avatar, id: res.id}
-
-
-
-  fetch("https://mesto.nomoreparties.co/v1/cohort-41/users/me", {
-    method: "GET",
-    headers: {
-      authorization: "5ac24e56-6009-4399-abe6-aadfc281115b",
-      // "Content-Type": "application/json",
-    },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject("Ошибка" + res.status);
-    })
-    .then((res) => (console.log(res)))
-    .then((data) => ({
-
-    }))
-    .catch((err) => console.log(err));
-
-
-
-
-
-
-// , const bebe = new Promise.getInfobyGet()
-
-
-// const userInfo = api.getUserInfo()
-//                     .then((userData) => profile.setUserInfo(userData))
-//                     .catch((err) => console.log(err));
-// console.log(userInfo)
-
-// console.log(profile.getInfo().name)
-
-
-
 
 //-------------------------- Section
 
 const cardSection = new Section((cardItem) => {
-  cardSection.addItem(createCard(cardItem, userId));
-}, ".elements");
+  cardSection.addItem(createCard(cardItem, userID))}, ".elements");
 
 // //-------------------------- Card
 
@@ -188,44 +122,14 @@ const profilePopup = new PopupWithForm({
 });
 profilePopup.setEventListeners();
 
-// editButton.addEventListener("click", () => {
-//   api.getUserInfo().then((data) => {
-//     profilePopup.setInputValues(data);
-//   });
-//   profileFormValidator.resetValidation();
-//   profileFormValidator.toggleButtonState();
-//   profilePopup.open();
-// });
-
-
-
-
 editButton.addEventListener("click", () => {
-  profilePopup.setInputValues(profile.getInfo().name)
-
-
-  console.log(profile.getInfo())
   
+  profilePopup.setInputValues(profile.getInfo(profile.name, profile.about));
+
   profileFormValidator.resetValidation();
   profileFormValidator.toggleButtonState();
   profilePopup.open();
 });
-
-
-
-// editButton.addEventListener("click", () => {
-  
-//   console.log(name)
-
-//   profilePopup.setInputValues(profile.getInfo())
-
-//   // {name: data.name, about: data.about}
-
-//   profileFormValidator.resetValidation();
-//   profileFormValidator.toggleButtonState();
-//   profilePopup.open();
-// });
-
 
 // //-------------------------- Popup Form Avatar
 
@@ -247,10 +151,6 @@ const avatarPopup = new PopupWithForm({
 avatarPopup.setEventListeners();
 
 avatarButton.addEventListener("click", () => {
-  api.getUserInfo()
-    .then((data) => {
-    avatarPopup.setInputValues(data)})
-    .catch((err) => console.log(err));
   
   avatarFormValidator.resetValidation();
   avatarFormValidator.toggleButtonState();
@@ -269,7 +169,7 @@ const popupPlace = new PopupWithForm({
       .addCard(cardData)
       .then((responseWithCard) => {
         cardSection.addItem(
-          createCard(responseWithCard, responseWithCard.owner._id)
+          createCard(responseWithCard, userID)
         );
         popupPlace.close();
       })
@@ -306,3 +206,14 @@ avatarFormValidator.enableValidation();
 
 // //-------------------------- Promise.all
 
+Promise.all([api.getUserInfo(), api.getCardList()])
+  .then((promiseResponseArray) => {
+    profile.setAvatar(promiseResponseArray[0]);
+
+    profile.setUserInfo(promiseResponseArray[0]);
+
+    userID = profile.getId(promiseResponseArray[0]._id);
+
+    cardSection.renderItems(promiseResponseArray[1].reverse());
+  })
+  .catch((err) => console.log(err));
