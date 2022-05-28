@@ -35,9 +35,7 @@ export default class Api {
   deleteCard(id) {
     return fetch(`${this._url}cards/${id}`, {
       method: "DELETE",
-      headers: {
-        authorization: "5ac24e56-6009-4399-abe6-aadfc281115b",
-      },
+      headers: this._headers,
     }).then(this._checkErorr);
   }
 
@@ -45,7 +43,7 @@ export default class Api {
   getUserInfo() {
     return fetch(`${this._url}users/me`, {
       method: "GET",
-      headers: this._headers 
+      headers: this._headers,
     }).then(this._checkErorr);
   }
 
@@ -77,9 +75,7 @@ export default class Api {
   likeCard(id) {
     return fetch(`${this._url}cards/${id}/likes`, {
       method: "PUT",
-      headers: {
-        authorization: "5ac24e56-6009-4399-abe6-aadfc281115b",
-      },
+      headers: this._headers,
     }).then(this._checkErorr);
   }
 
@@ -87,9 +83,7 @@ export default class Api {
   removeLike(id) {
     return fetch(`${this._url}cards/${id}/likes`, {
       method: "DELETE",
-      headers: {
-        authorization: "5ac24e56-6009-4399-abe6-aadfc281115b",
-      },
+      headers: this._headers,
     }).then(this._checkErorr);
   }
 }
